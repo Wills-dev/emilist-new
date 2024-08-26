@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Exo", sans-serif;
+}
+body {
+  background-color: #fff;
+  min-height: 100vh;
+  color: #303632;
+}
+
+@layer components {
+  .max-container {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+}
+@layer utilities {
+  .padding {
+    @apply sm:px-30 px-8 sm:py-24 py-12;
+  }
+
+  .padding-l {
+    @apply xl:pl-[6rem] lg:pl-[4rem] sm:pl-[2rem] pl-3;
+  }
+
+  .padding-x {
+    @apply xl:px-[6rem] lg:px-[4rem] sm:px-[2rem] px-3;
+  }
+
+  .padding-y {
+    @apply sm:py-20 py-10;
+  }
+  .flex-c-b {
+    @apply flex items-center justify-between;
+  }
+  .flex-c {
+    @apply flex items-center;
+  }
+  .home-nav {
+    @apply hover:bg-primary-green hover:text-white transition-all duration-300 rounded-lg;
+  }
+  .custom-btn {
+    @apply bg-primary-green text-white hover:bg-green-600 whitespace-nowrap transition-all duration-300 rounded-lg px-6 py-3;
+  }
+}
