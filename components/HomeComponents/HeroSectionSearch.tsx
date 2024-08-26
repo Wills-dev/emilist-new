@@ -17,7 +17,7 @@ const HeroSectionSearch = () => {
     // } else {
     //   params.delete("q");
     // }
-    // replace(`/catalog/jobs?${params.toString()}`);
+    // replace(`/catalog/services?${params.toString()}`);
   }
   return (
     <form className="w-full max-w-full flex-c-b mb-10 shadow-lg max-lg:max-w-[770px] h-12">
