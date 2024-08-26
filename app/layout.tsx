@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     "Experts",
     "Projects",
   ],
-  openGraph: {
-    images: ["/assets/images/hero-img.png"],
-  },
+  // openGraph: {
+  //   images: ["/assets/images/hero-img.png"],
+  // },
 };
 
 export default function RootLayout({
