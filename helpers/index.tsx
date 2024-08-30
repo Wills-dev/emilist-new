@@ -1,4 +1,12 @@
 import toast from "react-hot-toast";
+import {
+  format,
+  differenceInHours,
+  differenceInMinutes,
+  differenceInDays,
+  differenceInWeeks,
+  differenceInMonths,
+} from "date-fns";
 
 export const toastOptions = {
   duration: 6000,
@@ -17,5 +25,46 @@ export const promiseErrorFunction = (error: any) => {
     return toast.error(`${error.message}`, toastOptions);
   } else {
     return toast.error(`Internal Server Error! Contact support`, toastOptions);
+  }
+};
+
+export const Capitalize = (str: string) => {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+};
+
+export function numberWithCommas(x: number | string) {
+  return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+export const goBack = () => {
+  window.history.back();
+};
+
+export const formatCreatedAt = (date: Date): string => {
+  const createdAt = date;
+  const now = new Date();
+
+  const hoursDiff = differenceInHours(now, createdAt);
+  const minutesDiff = differenceInMinutes(now, createdAt);
+  const daysDiff = differenceInDays(now, createdAt);
+  const weeksDiff = differenceInWeeks(now, createdAt);
+
+  if (hoursDiff < 1) {
+    if (minutesDiff < 1) {
+      return "Just now";
+    } else if (minutesDiff < 2 && minutesDiff >= 1) {
+      return `${minutesDiff} m`;
+    } else {
+      return `${minutesDiff} m`;
+    }
+  } else if (hoursDiff < 24) {
+    return `${hoursDiff}h`;
+  } else if (daysDiff <= 7) {
+    return `${daysDiff}d`;
+  } else {
+    return `${weeksDiff}w`;
   }
 };

@@ -4,6 +4,8 @@ import "../styles/globals.css";
 
 import { Toaster } from "react-hot-toast";
 
+import ReactQueryProvider from "@/utils/ReactQueryProvider";
+
 export const metadata: Metadata = {
   title: "Emilist",
   applicationName: "Emilist",
@@ -29,8 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="app">
-        <Toaster />
-        {children}
+        <ReactQueryProvider>
+          <main>
+            <Toaster />
+            {children}
+          </main>
+        </ReactQueryProvider>
       </body>
     </html>
   );

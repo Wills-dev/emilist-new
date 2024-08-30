@@ -30,7 +30,7 @@ const HeroSection = ({ currentLink }: Props) => {
                   href={link.link}
                   className={`${
                     currentLink === link.id
-                      ? "text-primary-green  border-b-primary-green border-b-2"
+                      ? "text-primary-green  border-b-primary-green border-b-1"
                       : "text-gray-400"
                   }  font-semibold hover:text-primary-green transition-all duration-300`}
                 >
@@ -55,9 +55,9 @@ const HeroSection = ({ currentLink }: Props) => {
         </div>
       </div>
       <div className=" pt-10 max-xl:pt-0 max-xl:px-20 max-md:px-0 col-span-3 max-xl:col-span-7 w-full">
-        {currentLink === 2 ? (
+        {currentLink === 3 ? (
           <Image
-            src="/public/assets/images/heroImg2.png"
+            src="/assets/images/heroImg2.png"
             alt="menu"
             width={773}
             height={67}
@@ -83,7 +83,7 @@ const HeroSection = ({ currentLink }: Props) => {
                 href={link.link}
                 className={`${
                   currentLink === link.id
-                    ? "text-primary-green  border-b-primary-green border-b-2"
+                    ? "text-primary-green  border-b-primary-green border-b-1"
                     : "text-gray-400"
                 }  font-semibold max-sm:text-sm hover:text-primary-green transition-all duration-300`}
               >

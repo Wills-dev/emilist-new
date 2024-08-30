@@ -45,7 +45,7 @@ const Nav = () => {
             alt="logo"
             width={130}
             height={30}
-            className="object-contain h-auto"
+            className="object-contain w-auto h-auto"
             priority
           />
         </Link>
