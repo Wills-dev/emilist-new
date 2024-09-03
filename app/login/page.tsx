@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <div className="w-full flex-c justify-center min-h-screen">
-      <div className=" max-h-full xl:w-2/5 lg:w-1/2 w-full sm:my-6 p-6 shadow flex-c justify-center flex-col gap-6">
+      <div className=" max-h-full xl:w-2/5 lg:w-1/2 w-full sm:my-6 p-6 shadow flex-c justify-center flex-col gap-6 h-screen">
         <Link href="/">
           <Image
             src="/assets/images/Logo.svg"
@@ -156,7 +156,7 @@ const Login = () => {
             className="object-contain sm:w-6 sm:h-6 w-5 h-5 ml-3"
           />
         </button>
-        <div className="w-full flex justify-center pt-5 pb-10 max-sm:py-5 ">
+        <div className="w-full flex justify-center pt-5 ">
           <p className="max-sm:text-sm">
             Don't have an EmiList account??{" "}
             <Link href="/sign-up" className="text-primary-green">
