@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <div className="w-full flex-c justify-center min-h-screen">
-      <div className=" min-h-full xl:w-2/5 lg:w-1/2 w-full my-6 p-6 shadow flex-c justify-center flex-col gap-6">
+      <div className=" max-h-full xl:w-2/5 lg:w-1/2 w-full sm:my-6 p-6 shadow flex-c justify-center flex-col gap-6">
         <Link href="/">
           <Image
             src="/assets/images/Logo.svg"
@@ -30,7 +30,7 @@ const Login = () => {
             priority
           />
         </Link>
-        <h1 className="sm:text-lg font-bold pt-6">Log In to EmiList</h1>
+        <h1 className="sm:text-lg font-bold sm:pt-6 pt-3">Log In to EmiList</h1>
         <form
           className="w-full flex flex-col gap-3 text-gray-600"
           onSubmit={handleLogin}
