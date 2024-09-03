@@ -30,7 +30,7 @@ const Login = () => {
             priority
           />
         </Link>
-        <h1 className="sm:text-lg font-bold pt-6">Log In to EmiList</h1>
+        <h1 className="sm:text-lg font-bold sm:pt-6 pt-3">Log In to EmiList</h1>
         <form
           className="w-full flex flex-col gap-3 text-gray-600"
           onSubmit={handleLogin}
