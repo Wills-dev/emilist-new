@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <div className="w-full flex-c justify-center min-h-screen">
-      <div className=" max-h-full xl:w-2/5 lg:w-1/2 w-full sm:my-6 p-6 shadow flex-c justify-center flex-col gap-6 h-screen">
+      <div className=" max-h-full xl:w-2/5 lg:w-1/2 w-full sm:my-6 p-6 shadow flex-c justify-center flex-col gap-6 max-sm:h-screen">
         <Link href="/">
           <Image
             src="/assets/images/Logo.svg"
