@@ -156,7 +156,7 @@ const Login = () => {
             className="object-contain sm:w-6 sm:h-6 w-5 h-5 ml-3"
           />
         </button>
-        <div className="w-full flex justify-center pt-5 ">
+        <div className="w-full flex justify-center sm:pt-5 ">
           <p className="max-sm:text-sm">
             Don't have an EmiList account??{" "}
             <Link href="/sign-up" className="text-primary-green">
