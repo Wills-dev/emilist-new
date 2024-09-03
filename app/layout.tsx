@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import { Toaster } from "react-hot-toast";
 
 import ReactQueryProvider from "@/utils/ReactQueryProvider";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Emilist",
@@ -32,10 +33,12 @@ export default function RootLayout({
     <html lang="en">
       <body className="app">
         <ReactQueryProvider>
-          <main>
-            <Toaster />
-            {children}
-          </main>
+          <Providers>
+            <main>
+              <Toaster />
+              {children}
+            </main>
+          </Providers>
         </ReactQueryProvider>
       </body>
     </html>

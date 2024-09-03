@@ -15,7 +15,7 @@ const MaterialHomeData = () => {
     <>
       {" "}
       {loading ? (
-        <PopularSection bgColor="bg-gray-100" />
+        <PopularSection />
       ) : (
         <div className="flex items-center w-full overflow-x-scroll gap-4 sm:mt-6 py-4">
           {allMaterials?.map((material: any) => (

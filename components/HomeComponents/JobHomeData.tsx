@@ -9,12 +9,12 @@ import { useFetchJobs } from "@/hooks/useFetchJobs";
 import { Capitalize, numberWithCommas } from "@/helpers";
 
 const JobHomeData = () => {
-  const { loading, allJobs } = useFetchJobs();
+  const { isLoading, allJobs } = useFetchJobs();
 
   return (
     <>
       {" "}
-      {loading ? (
+      {isLoading ? (
         <PopularSection />
       ) : (
         <div className="flex items-center w-full overflow-x-scroll gap-4 sm:mt-6 py-4">
