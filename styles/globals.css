@@ -51,4 +51,72 @@ body {
   .custom-btn {
     @apply bg-primary-green text-white hover:bg-green-600 whitespace-nowrap transition-all duration-300 rounded-lg px-6 py-3;
   }
+  .auth-input {
+    @apply min-w-full w-full max-w-full rounded-lg sm:h-12 px-2 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-1 h-11;
+  }
+  .auth-input-div {
+    @apply min-w-full w-full  max-w-full rounded-lg sm:h-12 px-2 bg-[#ececec] focus-within:border-primary-green focus-within:border-1  h-11 flex justify-between items-center gap-2;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px !important;
+  height: 4px !important;
+}
+
+.no-scroll ::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0px !important;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(220, 218, 218) !important;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(183, 171, 171) !important;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #cb9e9e;
+}
+
+/* Paginantion */
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.pagination .page-item {
+  margin: 0 10px;
+  height: 30px;
+  width: 30px;
+  min-width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination .page-item {
+  background-color: transparent;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #7f8d96;
+}
+
+.pagination .page-item .page-link:hover {
+  color: #25c269;
+}
+
+.pagination .active .page-link {
+  background-color: #25c269;
+  color: #ffffff !important;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px !important;
+  border: none !important;
 }

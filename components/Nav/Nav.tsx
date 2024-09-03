@@ -35,7 +35,7 @@ const Nav = () => {
   };
 
   return (
-    <header className="padding-x  lg:py-8 fixed w-full bg-white backdrop-blur z-10 ">
+    <header className="padding-x  lg:py-8 fixed w-full bg-white backdrop-blur z-20 ">
       {/* Explore emilist modal */}
       <ExploreEmilist isOpen={openExploreEmilistModal} onCancel={onCancel} />
       <div className="flex-c-b w-full max-lg:py-4">
@@ -45,7 +45,7 @@ const Nav = () => {
             alt="logo"
             width={130}
             height={30}
-            className="object-contain h-auto"
+            className="object-contain w-auto h-auto"
             priority
           />
         </Link>

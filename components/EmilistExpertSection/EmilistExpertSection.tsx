@@ -32,35 +32,35 @@ const EmilistExpertSection = () => {
               <h6 className="sm:text-lg font-bold">Mike Kane</h6>
               <div className="flex items-center my-1">
                 <Image
-                  src="/assets/icons/StarColor.svg"
+                  src="/assets/icons/star-fill.svg"
                   alt="rate"
                   width={16}
                   height={16}
                   className="object-contain w-5 h-5"
                 />
                 <Image
-                  src="/assets/icons/StarColor.svg"
+                  src="/assets/icons/star-fill.svg"
                   alt="rate"
                   width={16}
                   height={16}
                   className="object-contain w-5 h-5"
                 />
                 <Image
-                  src="/assets/icons/StarColor.svg"
+                  src="/assets/icons/star-fill.svg"
                   alt="rate"
                   width={16}
                   height={16}
                   className="object-contain w-5 h-5"
                 />
                 <Image
-                  src="/assets/icons/StarColor.svg"
+                  src="/assets/icons/star-fill.svg"
                   alt="rate"
                   width={16}
                   height={16}
                   className="object-contain w-5 h-5"
                 />
                 <Image
-                  src="/assets/icons/Star.svg"
+                  src="/assets/icons/star.svg"
                   alt="rate"
                   width={16}
                   height={16}

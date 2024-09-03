@@ -2,17 +2,15 @@ import EmilistExpertSection from "@/components/EmilistExpertSection/EmilistExper
 import HeroSection from "@/components/HeroSection/HeroSection";
 import MainLayout from "@/components/MainLayout/MainLayout";
 import PopularMaterials from "@/components/PopularMaterials/PopularMaterials";
-import PopularExperts from "@/components/PopularExperts/PopularExperts";
-import PopularJobs from "@/components/PopularJobs/PopularJobs";
 
-export default function Home() {
+const BuyMaterials = () => {
   return (
     <MainLayout>
-      <HeroSection currentLink={0} />
-      <PopularExperts />
+      <HeroSection currentLink={3} />
       <PopularMaterials bgColor="bg-[#F7F7F7]" />
-      <PopularJobs />
       <EmilistExpertSection />
     </MainLayout>
   );
-}
+};
+
+export default BuyMaterials;
