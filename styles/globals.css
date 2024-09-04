@@ -82,6 +82,11 @@ body {
   background: #cb9e9e;
 }
 
+.custom-auth-input input:-webkit-autofill {
+  background-color: #fff !important;
+  color: #303632 !important;
+}
+
 /* Paginantion */
 .pagination {
   display: flex;

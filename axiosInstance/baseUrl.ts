@@ -1,3 +1,4 @@
+import { readAuthCookie } from "@/helpers";
 import axios from "axios";
 
 const baseUrl = "https://emilistapi.vercel.app";
@@ -13,7 +14,7 @@ export const axiosInstance = axios.create({
 //set the Auth token for any request
 axiosInstance.interceptors.request.use(
   function (config) {
-    const token = localStorage.getItem("token");
+    const token = readAuthCookie("authToken");
     config.headers.Authorization = token ? `Bearer ${token}` : "";
     return config;
   },

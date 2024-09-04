@@ -3,23 +3,21 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { useLogin } from "@/hooks/useLogin";
+import { useSignUp } from "@/hooks/useSignUp";
 
-const Login = () => {
+const SignUp = () => {
   const {
-    password,
-    setPassword,
-    email,
-    setEmail,
+    handleChange,
+    handleRegisterUser,
+    registerDetails,
     loading,
     setInputType,
     inputType,
-    handleLogin,
-  } = useLogin();
+  } = useSignUp();
 
   return (
     <div className="w-full flex-c justify-center min-h-screen custom-auth-input">
-      <div className=" max-h-full xl:w-2/5 lg:w-1/2 w-full sm:my-6 p-6 max-sm:pt-3 shadow flex-c justify-center flex-col gap-6 max-sm:h-screen">
+      <div className=" max-h-full xl:w-2/5 lg:w-1/2 w-full  p-6 max-sm:pt-3 shadow flex-c justify-center flex-col gap-6">
         <Link href="/">
           <Image
             src="/assets/images/Logo.svg"
@@ -30,13 +28,53 @@ const Login = () => {
             priority
           />
         </Link>
-        <h1 className="sm:text-lg font-bold sm:pt-6 capitalize">
-          Log In to EmiList
+        <h1 className="sm:text-lg font-bold  sm:pt-3 capitalize">
+          {" "}
+          Create a free account
         </h1>
         <form
           className="w-full flex flex-col gap-3 text-gray-600"
-          onSubmit={handleLogin}
+          onSubmit={handleRegisterUser}
         >
+          <div className="flex items-start gap-2">
+            <input
+              type="checkbox"
+              name="terms"
+              id="terms"
+              className="mt-1 bg-white checkbox checkbox-success h-4 w-4 rounded"
+              required
+            />
+            <p className=" max-sm:text-sm">
+              By signing up with email, Facebook, or Google, you agree to our{" "}
+              <Link href="/terms-of-use" className="text-primary-green">
+                Terms of Use
+              </Link>{" "}
+              and{" "}
+              <Link href="/privacy-policy" className="text-primary-green">
+                Privacy Policy.
+              </Link>
+            </p>
+          </div>
+          <div className="w-full">
+            <label
+              className="font-medium max-sm:text-sm py-2"
+              htmlFor="userName"
+            >
+              Enter Username
+            </label>
+            <div className="w-full">
+              <input
+                type="text"
+                id="userName"
+                className="auth-input appearance-none"
+                placeholder="Enter your username"
+                name="userName"
+                value={registerDetails.userName}
+                onChange={handleChange}
+                style={{ fontSize: "16px" }}
+              />
+            </div>
+          </div>
           <div className="w-full">
             <label className="font-medium max-sm:text-sm py-2" htmlFor="email">
               Enter Email
@@ -47,8 +85,9 @@ const Login = () => {
                 id="email"
                 className="auth-input appearance-none"
                 placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+                value={registerDetails.email}
+                onChange={handleChange}
                 style={{ fontSize: "16px" }}
               />
             </div>
@@ -67,8 +106,9 @@ const Login = () => {
                   id="password"
                   placeholder="Enter your password"
                   className="outline-none flex-1 h-full bg-[#ececec] appearance-none"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name="password"
+                  value={registerDetails.password}
+                  onChange={handleChange}
                   style={{ fontSize: "16px" }}
                 />
                 {inputType === "password" ? (
@@ -111,25 +151,19 @@ const Login = () => {
                 )}
               </div>
             </div>
-            <div className="flex items-center justify-end">
-              <Link
-                href="forgot-password"
-                className="font-semibold max-sm:text-sm py-2 hover:text-primary-green"
-              >
-                Forgot Password?
-              </Link>
-            </div>
           </div>
           <button
             type="submit"
-            className={` text-white hover:bg-green-600 whitespace-nowrap transition-all duration-300 rounded-lg w-full h-12 ${
-              loading ? "bg-green-200 cursor-not-allowed" : "bg-primary-green"
+            className={` text-white  whitespace-nowrap transition-all duration-300 rounded-lg w-full h-12 ${
+              loading
+                ? "bg-green-200 cursor-not-allowed"
+                : "bg-primary-green hover:bg-green-600"
             }`}
           >
             {loading ? (
               <span className="loading loading-dots loading-lg"></span>
             ) : (
-              "Login"
+              "Sign Up"
             )}
           </button>
         </form>
@@ -160,9 +194,9 @@ const Login = () => {
         </button>
         <div className="w-full flex justify-center sm:pt-5 ">
           <p className="max-sm:text-sm">
-            Don't have an EmiList account?{" "}
-            <Link href="/sign-up" className="text-primary-green">
-              Sign Up
+            Have an EmiList account?{" "}
+            <Link href="/login" className="text-primary-green">
+              Login
             </Link>
           </p>
         </div>
@@ -171,4 +205,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
