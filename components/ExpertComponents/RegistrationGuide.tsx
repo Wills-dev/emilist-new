@@ -1,6 +1,3 @@
-import { Link } from "lucide-react";
-import React from "react";
-
 const RegistrationGuide = () => {
   return (
     <div className="pt-24 h-screen max-h-screen bg-[#054753] text-white w-[500px] max-md:w-full pb-24 md:fixed">
