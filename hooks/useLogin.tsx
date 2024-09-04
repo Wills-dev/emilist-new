@@ -5,7 +5,11 @@ import toast from "react-hot-toast";
 
 import { AuthContext } from "@/utils/AuthState";
 import { axiosInstance } from "@/axiosInstance/baseUrl";
-import { promiseErrorFunction, toastOptions } from "@/helpers";
+import {
+  createAuthCookie,
+  promiseErrorFunction,
+  toastOptions,
+} from "@/helpers";
 
 export const useLogin = () => {
   const router = useRouter();
@@ -26,9 +30,12 @@ export const useLogin = () => {
       const data = await axiosInstance.post(
         `/login?email=${email}&password=${password}`
       );
-      localStorage.setItem("sessionId", data.data.session_id);
-      localStorage.setItem("token", data.data.access_token);
-      localStorage.setItem("user", JSON.stringify(data?.data?.user));
+      createAuthCookie("sessionId", data.data.session_id);
+      createAuthCookie("authToken", data.data.access_token);
+      createAuthCookie("user", data?.data?.user);
+      // localStorage.setItem("sessionId", data.data.session_id);
+      // localStorage.setItem("token", data.data.access_token);
+      // localStorage.setItem("user", JSON.stringify(data?.data?.user));
       setCurrentUser(data?.data?.user);
       toast.success("Login successful!", toastOptions);
       router.push("/dashboard/jobs");
