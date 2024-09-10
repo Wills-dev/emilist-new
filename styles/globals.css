@@ -49,7 +49,7 @@ body {
     @apply hover:bg-primary-green hover:text-white transition-all duration-300 rounded-lg;
   }
   .custom-btn {
-    @apply bg-primary-green text-white hover:bg-green-600 whitespace-nowrap transition-all duration-300 rounded-lg px-6 py-3;
+    @apply bg-primary-green text-white hover:bg-green-600 whitespace-nowrap transition-all duration-300 rounded-lg px-6 py-3 text-center;
   }
   .auth-input {
     @apply min-w-full w-full max-w-full rounded-lg sm:h-12 px-2 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-1 h-11;
@@ -147,4 +147,10 @@ input[type="number"] {
   justify-content: center;
   border-radius: 4px !important;
   border: none !important;
+}
+
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
 }
