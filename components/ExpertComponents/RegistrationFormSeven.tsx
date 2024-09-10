@@ -62,6 +62,7 @@ const RegistrationFormSeven = () => {
 
   const handleDelete = () => {
     setFiles(null);
+    localStorage.removeItem("EmilistExpertCertPic");
   };
 
   const handleVerify = () => {

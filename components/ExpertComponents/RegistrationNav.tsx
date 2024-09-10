@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const RegistrationNav = () => {
   return (
-    <header className="padding-x  lg:py-8 fixed w-full bg-white backdrop-blur z-20 ">
+    <header className="padding-x  lg:py-8 fixed w-full bg-white backdrop-blur z-20 max-md:shadow">
       <div className="flex-c-b w-full max-lg:py-4">
         <Link href="/">
           <Image

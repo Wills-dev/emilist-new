@@ -49,7 +49,7 @@ const config = {
       },
       backgroundImage: {
         "become-expert-banner": "url('/assets/images/banner.png')",
-        "congrats-banner": "url('/assets/images/congrats.svg')",
+        "congrats-banner": "url('/assets/images/congrats.png')",
         "footer-texture": "url('/img/footer-texture.png')",
       },
       borderWidth: {
