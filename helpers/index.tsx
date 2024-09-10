@@ -31,7 +31,7 @@ export const readAuthCookie = (cookieName: string): any => {
 
 export const clearAuthClear = (cookieName: string): void => {
   const cookies = new Cookies();
-  cookies.remove(cookieName);
+  cookies.remove(cookieName, { path: "/" });
 };
 
 export const toastOptions = {

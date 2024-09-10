@@ -23,3 +23,10 @@ export interface InsuranceFormProps {
   typeOfCover: string;
   description: string;
 }
+
+export interface HiringDetails {
+  fullName: string;
+  jobType: string;
+  jobDetails: string;
+  location: string;
+}

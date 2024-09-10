@@ -1,14 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useContext } from "react";
 
-import { AnimatePresence, motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
+import { AnimatePresence, motion } from "framer-motion";
+
+import { AuthContext } from "@/utils/AuthState";
+import { CiLogout } from "react-icons/ci";
+import { useLogout } from "@/hooks/useLogout";
 
 interface SidebarProps {
   toggle: () => void;
 }
 
 const Sidebar = ({ toggle }: SidebarProps) => {
+  const { logout } = useLogout();
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -57,22 +65,44 @@ const Sidebar = ({ toggle }: SidebarProps) => {
                 List New Job
               </Link>
             </li>
-            <li>
-              <Link
-                href="/login"
-                className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/sign-up"
-                className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
-              >
-                Sign up
-              </Link>
-            </li>
+            {currentUser ? (
+              <>
+                <li>
+                  <Link
+                    href="/login"
+                    className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <button
+                  className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm flex-c gap-2 text-red-500 "
+                  onClick={logout}
+                >
+                  <CiLogout />
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link
+                    href="/login"
+                    className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/sign-up"
+                    className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
+                  >
+                    Sign up
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </motion.div>
       </AnimatePresence>

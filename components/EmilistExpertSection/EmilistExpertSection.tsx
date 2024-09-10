@@ -85,7 +85,7 @@ const EmilistExpertSection = () => {
             project.
           </p>
           <div className="w-full flex max-xl:justify-center">
-            <Link href="/become-expert">
+            <Link href="/expert/private-expert">
               <button className="custom-btn">Get Started</button>
             </Link>
           </div>

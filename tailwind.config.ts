@@ -48,7 +48,7 @@ const config = {
         "light-gray": "#D9D9D9",
       },
       backgroundImage: {
-        "become-expert-banner": "url('/assets/images/banner.png')",
+        "become-expert-banner": "url('/assets/images/privateExpertBanner.png')",
         "congrats-banner": "url('/assets/images/congrats.png')",
         "footer-texture": "url('/img/footer-texture.png')",
       },

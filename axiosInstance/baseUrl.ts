@@ -1,5 +1,6 @@
-import { readAuthCookie } from "@/helpers";
 import axios from "axios";
+
+import { readAuthCookie } from "@/helpers";
 
 const baseUrl = "https://emilistapi.vercel.app";
 

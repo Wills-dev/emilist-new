@@ -32,10 +32,7 @@ export const useLogin = () => {
       );
       createAuthCookie("sessionId", data.data.session_id);
       createAuthCookie("authToken", data.data.access_token);
-      createAuthCookie("user", data?.data?.user);
-      // localStorage.setItem("sessionId", data.data.session_id);
-      // localStorage.setItem("token", data.data.access_token);
-      // localStorage.setItem("user", JSON.stringify(data?.data?.user));
+      createAuthCookie("emilistUser", data?.data?.user);
       setCurrentUser(data?.data?.user);
       toast.success("Login successful!", toastOptions);
       router.push("/dashboard/jobs");
