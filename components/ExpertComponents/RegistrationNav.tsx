@@ -11,7 +11,7 @@ const RegistrationNav = () => {
             alt="logo"
             width={130}
             height={30}
-            className="object-contain w-auto h-auto"
+            className="object-contain w-auto h-auto max-sm:w-28"
             priority
           />
         </Link>

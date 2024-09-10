@@ -1,14 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import dynamic from "next/dynamic";
+import { useContext, useState } from "react";
 
+import { CgMenuRight } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { CgMenuRight } from "react-icons/cg";
 import { AnimatePresence, motion } from "framer-motion";
+
+import { AuthContext } from "@/utils/AuthState";
 
 import ExploreEmilist from "../modals/ExploreEmilist";
 
@@ -16,6 +18,7 @@ const Sidebar = dynamic(() => import("../Sidebar/Sidebar"));
 const MenuItem = dynamic(() => import("../MenuItem/MenuItem"));
 
 const Nav = () => {
+  const { currentUser } = useContext(AuthContext);
   const [menu, setMenu] = useState(false);
   const [openSideBar, setOpenSideBar] = useState(false);
   const [openExploreEmilistModal, setOpenExploreEmilistModal] = useState(false);
@@ -45,7 +48,7 @@ const Nav = () => {
             alt="logo"
             width={130}
             height={30}
-            className="object-contain w-auto h-auto"
+            className="object-contain w-auto h-auto max-sm:w-28"
             priority
           />
         </Link>
@@ -78,22 +81,35 @@ const Nav = () => {
                 </span>
               </button>
             </li>
-            <li>
-              <Link
-                href="/login"
-                className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/sign-up"
-                className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
-              >
-                Sign up
-              </Link>
-            </li>
+            {currentUser ? (
+              <li>
+                <Link
+                  href="/dashboard/jobs"
+                  className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
+                >
+                  Dashboard
+                </Link>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link
+                    href="/login"
+                    className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/sign-up"
+                    className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
+                  >
+                    Sign up
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
         <button className="lg:hidden block text-xl" onClick={toggle}>
