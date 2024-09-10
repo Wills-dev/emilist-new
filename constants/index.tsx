@@ -17,12 +17,34 @@ export const category = [
 ];
 
 export const serviceList = [
-  "building materials",
-  "Clothing",
-  "plumbing materials",
-  "computer",
-  "computer assesories",
+  "Project Manager",
+  "Site Supervisor",
+  "Architect",
+  "Civil Engineer",
+  "Structural Engineer",
+  "Electrician",
+  "Plumber",
+  "Carpenter",
+  "Mason",
+  "Painter",
+  "Welder",
+  "Steel Fixer",
+  "Crane Operator",
+  "Laborer",
+  "Surveyor",
+  "Safety Officer",
   "Others",
+];
+
+export const insuranceOptions = [
+  "General Liability Insurance",
+  "Professional Liability Insurance",
+  "Contractor’s All Risk Insurance",
+  "Performance Bond",
+  "Delay in Start-Up Insurance",
+  "Health Insurance",
+  "Tools and Equipment Insurance",
+  "Commercial Auto Insurance",
 ];
 
 export const privateExpert = [

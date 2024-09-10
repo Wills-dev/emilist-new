@@ -1,11 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+import { CgCloseR } from "react-icons/cg";
 import toast from "react-hot-toast";
 
+import { toastOptions } from "@/helpers";
 import { countries, languages } from "@/constants";
 
 interface Option {
@@ -95,20 +96,14 @@ const RegistrationFormTwo = () => {
       !formData.address ||
       !formData.bio
     ) {
-      return toast.error("Please fill all fields", {
-        duration: 6000,
-        style: {
-          background: "#353434",
-          color: "#fff",
-        },
-      });
+      return toast.error("Please fill all fields", toastOptions);
     }
     const emilistExpertProfile = JSON.stringify(formData);
     const emilistSelectedLanguages = JSON.stringify(selectedLanguage);
     localStorage.setItem("EmilistExpertProfile", emilistExpertProfile);
     localStorage.setItem("EmilistSelectedCountry", selectedCountry);
     localStorage.setItem("EmilistSelectedLanguage", emilistSelectedLanguages);
-    router.push("/register/expert/upload-profile-picture");
+    router.push("/expert/register/upload-profile-picture");
   };
 
   return (
@@ -118,19 +113,18 @@ const RegistrationFormTwo = () => {
           <div className="w-full mt-10 max-md:mt-5">
             <h1 className="expert-reg-title">Lets get to know you</h1>
             <p className="py-4 max-w-[550px]">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enimt. amet minim mollit
-              non deserunt ullamco est sit aliqua dolor do amet sint. Velit
-              officia consequat duis enimt.
+              Fill out the business or service profile information below
             </p>
             <div className="grid grid-cols-4 gap-6 w-full ">
               <div className="input__container ">
-                <p className="input-label">First Name</p>
+                <label htmlFor="firstName" className="input-label">
+                  First Name
+                </label>
                 <div className="w-full">
                   <input
                     type="text"
                     className="expert-reg-input"
-                    placeholder="Phil "
+                    id="firstName"
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
@@ -138,12 +132,14 @@ const RegistrationFormTwo = () => {
                 </div>
               </div>
               <div className="input__container ">
-                <p className="input-label">Last Name</p>
+                <label htmlFor="lastName" className="input-label">
+                  Last Name
+                </label>
                 <div className="w-full">
                   <input
+                    id="lastName"
                     type="text"
                     className="expert-reg-input"
-                    placeholder="Jones"
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
@@ -180,14 +176,12 @@ const RegistrationFormTwo = () => {
                             className="flex-c gap-1 max-sm:text-sm"
                           >
                             {option}{" "}
-                            <Image
-                              src="/assets/icons/close-square.svg"
-                              alt="arrow-left"
-                              width={30}
-                              height={30}
-                              className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer"
+                            <span
+                              className=""
                               onClick={() => toggleOption(option)}
-                            />
+                            >
+                              <CgCloseR />
+                            </span>
                           </p>
                         ))
                       ) : (

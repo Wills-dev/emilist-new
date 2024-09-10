@@ -78,12 +78,11 @@ const RegistrationFormOne = () => {
     <section className="h-screen" id="new-expert">
       <div className="pt-28 max-md:pt-10 max-md:pb-15 md:pl-[500px]">
         <div className="max-w-[550px] mx-10 mt-20 max-md:mt-10 max-sm:mx-4">
-          <h1 className="expert-reg-title">Get New jobs near you</h1>
+          <h1 className="expert-reg-title">Create Expert Service Account</h1>
           <p className=" py-4">
-            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-            sint. Velit officia consequat duis enimt. amet minim mollit non
-            deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
-            consequat duis enimt.
+            EmiList employers and customers want to hire your services. Tell the
+            world what you do and where they can find you by filling out the
+            form and providing the necessary information and documents.
           </p>
           <div className="flex flex-col sm:gap-8 gap-5">
             <div>
