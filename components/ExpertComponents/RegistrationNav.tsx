@@ -15,7 +15,7 @@ const RegistrationNav = () => {
             priority
           />
         </Link>
-        <div className="flex w-16 h-26 bg-slate-600 rounded-full flex-c justify-center text-white uppercase">
+        <div className="flex w-8 h-8 bg-slate-600 rounded-full flex-c justify-center text-white uppercase">
           TW
         </div>
       </div>
