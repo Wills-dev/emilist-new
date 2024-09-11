@@ -30,3 +30,28 @@ export interface HiringDetails {
   jobDetails: string;
   location: string;
 }
+
+export interface MilestonePer {
+  id: string;
+  duration: string;
+  durationType: string;
+  details: string;
+  amount: any;
+  milestoneStatus: string;
+  percentage: any;
+}
+
+export interface PostJobType {
+  category: string;
+  service: string;
+  projectTitle: string;
+  description: string;
+  projectDuration: number | string;
+  projectDurationType: string;
+  maximumPrice: any;
+  bidRange: number | string;
+  location: string;
+  expertLevel: string;
+  milestonesNumber: number;
+  budget: any;
+}

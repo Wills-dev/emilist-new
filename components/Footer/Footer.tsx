@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
         {footerLinks?.map((title, index) => (
           <div className="flex flex-col " key={index}>
-            <h6 className="sm:text-2xl text-xl font-bold text-gray-900  mb-8">
+            <h6 className="sm:text-lg font-bold text-gray-900  mb-8">
               {title?.title}
             </h6>
             <ul className="flex flex-col gap-6">
@@ -33,7 +33,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     href="/"
-                    className="font-medium hover:text-primary-green transition-all duration-300 capitalize"
+                    className="font-medium hover:text-primary-green transition-all duration-300 capitalize max-sm:text-sm"
                   >
                     {link?.name}
                   </Link>

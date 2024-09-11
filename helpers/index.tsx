@@ -54,6 +54,14 @@ export const promiseErrorFunction = (error: any) => {
   }
 };
 
+export function handleInputFieldError() {
+  return toast.error("Please fill all input fields.", toastOptions);
+}
+
+export function handleLoginError() {
+  return toast.error("Please login", toastOptions);
+}
+
 export const Capitalize = (str: string) => {
   return str
     .split(" ")
