@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 
-import { levels } from "@/constants";
 import { useListNewJob } from "@/hooks/useListNewJob";
 import { handleKeyDown, handleWheel } from "@/helpers";
+import { category, levels, serviceList } from "@/constants";
 
 const ListNewJobForm = () => {
   const {
@@ -60,7 +60,7 @@ const ListNewJobForm = () => {
             </div>
           </div>
         </div>
-        <div className="w-full">
+        <div className="w-full my-3">
           <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
             Details of what's to be achieved
           </p>
@@ -75,7 +75,7 @@ const ListNewJobForm = () => {
             ></textarea>
           </div>
         </div>
-        <div className="w-full">
+        <div className="w-full my-3">
           <div className="py-2">
             <p className="text-[#5e625f] font-medium max-sm:text-sm">
               Percentage for Milestone
@@ -154,24 +154,15 @@ const ListNewJobForm = () => {
                   >
                     <option defaultValue="">Select industry</option>
 
-                    <option value="Artisan">Artisan</option>
-                    <option value="Construction">Construction</option>
-                    <option value="Education">Education</option>
-                    <option value="Entertainment">Entertainment</option>
-                    <option value="Event Management">Event Management</option>
-                    <option value="Information Management">
-                      Information Management
-                    </option>
-                    <option value="Manufacturing">Manufacturing</option>
-                    <option value="Medical">Medical</option>
-                    <option value="Minning">Minning</option>
-                    <option value="Professional service">
-                      Professional service
-                    </option>
-                    <option value="Real Estate">Real Estate</option>
-                    <option value=" Food/restaurant"> Food/restaurant</option>
-                    <option value="Utility">Utility</option>
-                    <option value="Waste Management">Waste Management</option>
+                    {category?.map((category, index) => (
+                      <option
+                        key={index}
+                        value={category}
+                        className="capitalize"
+                      >
+                        {category}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -181,7 +172,7 @@ const ListNewJobForm = () => {
                 Narrow down to a service
               </p>
               <div className="w-full">
-                <div className=" min-w-full w-full  max-w-full rounded-[10px] h-[62px] px-4 bg-[#ececec] focus:outline-none focus-within:border-primary-green focus-within:border-[1px]  max-sm:h-[46px] text-[#282828]">
+                <div className="expert-reg-input-div">
                   <select
                     className="bg-[#ececec] outline-none  min-w-full w-full h-full max-w-full max-sm:text-sm "
                     name="service"
@@ -194,19 +185,15 @@ const ListNewJobForm = () => {
                     }
                   >
                     <option defaultValue="Bricklayer">Select service</option>
-                    <option value="Bricklayer">Bricklayer</option>
-                    <option value="building materials">
-                      building materials
-                    </option>
-                    <option value=" plumbing materials">
-                      plumbing materials
-                    </option>
-                    <option value="computer">computer</option>
-                    <option value="computer assesories">
-                      computer assesories
-                    </option>
-                    <option value="Clothing">Clothing</option>
-                    <option value="Others">Others</option>
+                    {serviceList?.map((service, index) => (
+                      <option
+                        key={index}
+                        value={service}
+                        className="capitalize"
+                      >
+                        {service}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -218,7 +205,7 @@ const ListNewJobForm = () => {
               <div className="w-full">
                 <input
                   type="text"
-                  className=" min-w-full w-full  max-w-full rounded-[10px] h-[62px] px-4 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-[1px]  max-sm:h-[46px] max-sm:text-sm text-[#282828]"
+                  className="expert-reg-input"
                   placeholder=""
                   name="projectTitle"
                   value={postJobDetails.projectTitle}
@@ -227,12 +214,12 @@ const ListNewJobForm = () => {
               </div>
             </div>
             <div className="w-full">
-              <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
+              <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
                 Describe your project as detailed as you can
               </p>
               <div className="w-full">
                 <textarea
-                  className=" min-w-full w-full  max-w-full rounded-[10px]  px-4 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-[1px]  max-sm:text-sm text-[#282828] py-2"
+                  className=" min-w-full w-full max-w-full rounded-[10px]  p-2 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-1  max-sm:text-sm"
                   rows={8}
                   name="description"
                   value={postJobDetails.description}
@@ -247,7 +234,7 @@ const ListNewJobForm = () => {
             </div>
             <div className="w-full">
               <label
-                className=" flex items-center text-primary-green py-2 text-base font-medium max-sm:text-sm cursor-pointer max-w-fit"
+                className=" flex-c gap-1 text-primary-green py-2 font-medium max-sm:text-sm cursor-pointer max-w-fit"
                 htmlFor="attach-file"
               >
                 <Image
@@ -255,19 +242,19 @@ const ListNewJobForm = () => {
                   alt="logo"
                   width={130}
                   height={30}
-                  className="object-contain w-[24px] h-[24px] max-sm:w-[16px] max-sm:h-[16px] mr-1"
+                  className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5"
                 />
                 Attach a file
               </label>
               <input
                 type="file"
                 id="attach-file"
-                className="h-[1px] w-[1px] invisible"
+                className="h-0 w-0 invisible"
                 name="files"
                 accept="image/*"
                 onChange={onSelectFile}
               />
-              <div className="flex items-center gap-2 w-full flex-wrap">
+              <div className="flex-c gap-2 w-full flex-wrap">
                 {selectedImages &&
                   selectedImages.map((image, index) => {
                     return (
@@ -311,13 +298,13 @@ const ListNewJobForm = () => {
                   type="number"
                   onKeyDown={handleKeyDown}
                   onWheel={handleWheel}
-                  className="col-span-2 min-w-full w-full  max-w-full rounded-[10px] h-[62px] px-4 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-[1px]  max-sm:h-[46px] max-sm:text-sm text-[#282828]"
+                  className="col-span-2 expert-reg-input"
                   placeholder="1"
                   name="projectDuration"
                   value={postJobDetails.projectDuration}
                   onChange={handleChange}
                 />
-                <div className="col-span-1 min-w-full w-full  max-w-full rounded-[10px] h-[62px] px-4 bg-[#ececec] focus:outline-none focus-within:border-primary-green focus-within:border-[1px]  max-sm:h-[46px] text-[#282828]">
+                <div className="col-span-1 expert-reg-input-div">
                   <select
                     className="bg-[#ececec] outline-none  min-w-full w-full h-full max-w-full max-sm:text-sm "
                     name="projectDurationType"
@@ -337,17 +324,15 @@ const ListNewJobForm = () => {
               </div>
             </div>
             <div className="w-full my-3">
-              <h2 className="text-[20px] font-[600] leading-[32px] max-sm:text-base max-sm:leading-[20px] py-5">
-                Project type
-              </h2>
+              <h2 className="sm:text-lg font-semibold py-5">Project type</h2>
               <div className="w-full flex flex-col gap-3">
                 <div
-                  className={`flex items-center ${
+                  className={`flex-c ${
                     projectType === "regular" ? "text-primary-green" : ""
                   }`}
                   onClick={() => setProjectType("regular")}
                 >
-                  <img
+                  <Image
                     src={
                       projectType === "regular"
                         ? "/assets/icons/circle-color.svg"
@@ -356,22 +341,19 @@ const ListNewJobForm = () => {
                     alt="menu"
                     width={25}
                     height={25}
-                    className="object-contain w-[25px] h-[25px]"
+                    className="object-contain w-6 h-6"
                   />
-                  <label
-                    htmlFor="Regular"
-                    className="ml-3 text-base text-[#303632]"
-                  >
+                  <label htmlFor="Regular" className="ml-3 ">
                     Regular
                   </label>
                 </div>
                 <div
-                  className={`flex items-center ${
+                  className={`flex-c ${
                     projectType === "biddable" ? "text-primary-green" : ""
                   }`}
                   onClick={() => setProjectType("biddable")}
                 >
-                  <img
+                  <Image
                     src={
                       projectType === "biddable"
                         ? "/assets/icons/circle-color.svg"
@@ -380,12 +362,9 @@ const ListNewJobForm = () => {
                     alt="menu"
                     width={25}
                     height={25}
-                    className="object-contain w-[25px] h-[25px]"
+                    className="object-contain w-6 h-6"
                   />
-                  <label
-                    htmlFor="Bidable"
-                    className="ml-3 text-base text-[#303632]"
-                  >
+                  <label htmlFor="Bidable" className="ml-3">
                     Biddable
                   </label>
                 </div>
@@ -403,7 +382,7 @@ const ListNewJobForm = () => {
                       type="number"
                       onKeyDown={handleKeyDown}
                       onWheel={handleWheel}
-                      className=" min-w-full w-full  max-w-full rounded-[10px] h-[62px] px-4 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-[1px]  max-sm:h-[46px] max-sm:text-sm text-[#282828]"
+                      className="expert-reg-input"
                       placeholder="25000"
                       name="maximumPrice"
                       value={postJobDetails.maximumPrice}
@@ -419,7 +398,7 @@ const ListNewJobForm = () => {
                   <div className="w-full">
                     <input
                       type="text"
-                      className=" min-w-full w-full  max-w-full rounded-[10px] h-[62px] px-4 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-[1px]  max-sm:h-[46px] max-sm:text-sm text-[#282828]"
+                      className="expert-reg-input"
                       placeholder="₦5,000"
                       name="bidRange"
                       value={postJobDetails.bidRange}
@@ -438,7 +417,7 @@ const ListNewJobForm = () => {
                     type="number"
                     onKeyDown={handleKeyDown}
                     onWheel={handleWheel}
-                    className=" min-w-full w-full  max-w-full rounded-[10px] h-[62px] px-4 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-[1px]  max-sm:h-[46px] max-sm:text-sm text-[#282828]"
+                    className="expert-reg-input"
                     placeholder="₦1,000"
                     name="budget"
                     value={postJobDetails.budget}
@@ -448,14 +427,14 @@ const ListNewJobForm = () => {
               </div>
             ) : null}
 
-            <div className="w-full">
-              <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
+            <div className="w-full my-3">
+              <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
                 Location
               </p>
               <div className="w-full">
                 <input
                   type="text"
-                  className=" min-w-full w-full  max-w-full rounded-[10px] h-[62px] px-4 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-[1px]  max-sm:h-[46px] max-sm:text-sm text-[#282828]"
+                  className="expert-reg-input"
                   placeholder="Lagos, Nigeria"
                   name="location"
                   value={postJobDetails.location}
@@ -465,14 +444,12 @@ const ListNewJobForm = () => {
             </div>
           </div>
           <div className="w-full my-3 col-span-1 max-md:col-span-2">
-            <h2 className="text-[20px] font-[600] leading-[32px] max-sm:text-base max-sm:leading-[20px] py-5">
-              Expert Level
-            </h2>
+            <h2 className="sm:text-lg font-semibold py-5">Expert Level</h2>
             <div className="w-full flex flex-col gap-3">
               {levels.map((level, index) => (
                 <div
                   key={index}
-                  className={`flex items-center ${
+                  className={`flex-c gap-1 w-fit cursor-pointer ${
                     postJobDetails.expertLevel === level ? "active-level" : ""
                   }`}
                   onClick={() =>
@@ -482,10 +459,16 @@ const ListNewJobForm = () => {
                     })
                   }
                 >
-                  <div
-                    className={`circle-icon ${
-                      postJobDetails.expertLevel === level ? "filled" : ""
-                    }`}
+                  <Image
+                    src={
+                      postJobDetails.expertLevel === level
+                        ? "/assets/icons/circle-color.svg"
+                        : "/assets/icons/circle.svg"
+                    }
+                    alt="menu"
+                    width={25}
+                    height={25}
+                    className="object-contain w-6 h-6"
                   />
                   <label
                     htmlFor={level}
@@ -496,11 +479,11 @@ const ListNewJobForm = () => {
                 </div>
               ))}
             </div>
-            <div className="w-full">
+            <div className="w-full my-3">
               <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
                 Milestone
               </p>
-              <div className="min-w-full w-full max-w-full rounded-[10px] h-[62px] px-4 bg-[#ececec] focus:outline-none focus-within:border-primary-green focus-within:border-[1px] max-sm:h-[46px] text-[#282828]">
+              <div className="expert-reg-input-div">
                 <select
                   name="milestonesNumber"
                   className="bg-[#ececec] outline-none min-w-full w-full h-full max-w-full max-sm:text-sm"
@@ -523,15 +506,12 @@ const ListNewJobForm = () => {
           </div>
           <div className="flex mb-28 mt-6 justify-center col-span-2 ">
             {loading ? (
-              <button
-                type="button"
-                className="bg-green-300 cursor-not-allowed  w-40 h-11 text-[#fcfefd] rounded-[10px] mt-15  max-lg:mt-0  max-sm:mt-20 "
-              >
+              <button type="button" className="load-btn">
                 {" "}
                 <span className="loading loading-dots loading-lg"></span>
               </button>
             ) : (
-              <button type="submit" className="proceed-btn">
+              <button type="submit" className="custom-btn">
                 Proceed
               </button>
             )}

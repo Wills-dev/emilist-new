@@ -23,6 +23,7 @@ export const serviceList = [
   "Civil Engineer",
   "Structural Engineer",
   "Electrician",
+  "Bricklayer",
   "Plumber",
   "Carpenter",
   "Mason",
