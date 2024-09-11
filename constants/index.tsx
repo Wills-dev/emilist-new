@@ -23,6 +23,7 @@ export const serviceList = [
   "Civil Engineer",
   "Structural Engineer",
   "Electrician",
+  "Bricklayer",
   "Plumber",
   "Carpenter",
   "Mason",
@@ -2985,4 +2986,11 @@ export const countriesAndStates = [
       "Viken",
     ],
   },
+];
+
+export const levels = [
+  "Level 4 & Above",
+  "Level 3 & Above",
+  "Level 2 & Above",
+  "Level 1 & Above",
 ];

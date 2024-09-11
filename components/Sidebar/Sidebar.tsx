@@ -69,7 +69,7 @@ const Sidebar = ({ toggle }: SidebarProps) => {
               <>
                 <li>
                   <Link
-                    href="/login"
+                    href="/dashboard/job"
                     className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
                   >
                     Dashboard
