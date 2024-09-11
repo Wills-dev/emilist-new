@@ -2986,3 +2986,10 @@ export const countriesAndStates = [
     ],
   },
 ];
+
+export const levels = [
+  "Level 4 & Above",
+  "Level 3 & Above",
+  "Level 2 & Above",
+  "Level 1 & Above",
+];

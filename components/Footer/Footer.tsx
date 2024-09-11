@@ -28,7 +28,7 @@ const Footer = () => {
             <h6 className="sm:text-lg font-bold text-gray-900  mb-8">
               {title?.title}
             </h6>
-            <ul className="flex flex-col gap-6">
+            <ul className="flex flex-col sm:gap-6 gap-3">
               {title?.links?.map((link, index) => (
                 <li key={index}>
                   <Link

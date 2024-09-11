@@ -115,3 +115,14 @@ export function dataURLtoFile(dataUrl: string): File {
   const fileName = "profile_picture";
   return new File([u8arr], fileName, { type: mime });
 }
+
+export const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+    event.preventDefault();
+  }
+};
+
+export const handleWheel = (event: React.WheelEvent<HTMLInputElement>) => {
+  event.target as HTMLElement;
+  event.preventDefault();
+};
