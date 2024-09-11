@@ -59,7 +59,7 @@ const Sidebar = ({ toggle }: SidebarProps) => {
             </li>
             <li>
               <Link
-                href="/job/list-new-job"
+                href="/dashboard/job/list-new-job"
                 className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
               >
                 List New Job

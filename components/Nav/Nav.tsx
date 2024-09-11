@@ -64,7 +64,7 @@ const Nav = () => {
             </li>
             <li>
               <Link
-                href="/job/list-new-job"
+                href="/dashboard/job/list-new-job"
                 className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
               >
                 List New Job
@@ -84,7 +84,7 @@ const Nav = () => {
             {currentUser ? (
               <li>
                 <Link
-                  href="/dashboard/jobs"
+                  href="/dashboard/job"
                   className="font-medium px-5 sm:py-2 py-1 home-nav max-sm:text-sm"
                 >
                   Dashboard
