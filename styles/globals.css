@@ -48,6 +48,11 @@ body {
   .home-nav {
     @apply hover:bg-primary-green hover:text-white transition-all duration-300 rounded-lg;
   }
+
+  .view-btn {
+    @apply bg-primary-green text-white hover:bg-green-600 whitespace-nowrap transition-all duration-300 rounded-xl px-4 py-2 text-center;
+  }
+
   .custom-btn {
     @apply bg-primary-green text-white hover:bg-green-600 whitespace-nowrap transition-all duration-300 rounded-lg px-6 py-3 text-center;
   }

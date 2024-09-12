@@ -2,33 +2,24 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 import { CiSearch } from "react-icons/ci";
-import { IoIosArrowDown } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { Popconfirm, PopconfirmProps } from "antd";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Pagination from "react-responsive-pagination";
 
-import { dashboardLinks } from "@/constants";
+import DashboardLinks from "./DashboardLinks";
+
 import { useSaveJob } from "@/hooks/useSaveJob";
 import { useUnsaveJob } from "@/hooks/useUnSaveJob";
 import { useBlackListJob } from "@/hooks/useBlackListJob";
 import { useFetchJobs } from "@/hooks/useFetchJobs";
 import { useGetUserSavedJobs } from "@/hooks/useGetUserSavedJobs";
-import {
-  Capitalize,
-  formatCreatedAt,
-  numberWithCommas,
-  showLastPathOfLink,
-} from "@/helpers";
+import { Capitalize, formatCreatedAt, numberWithCommas } from "@/helpers";
 
 const DashboardJobContent = () => {
-  const pathname = usePathname();
-  const [open, setOpen] = useState<boolean>(false);
-
   const { handleSaveJob, rerender } = useSaveJob();
   const { handleUnsaveJob, unsaveRerenderr } = useUnsaveJob();
   const { handleBlackListJob, rerenderrr } = useBlackListJob();
@@ -68,61 +59,12 @@ const DashboardJobContent = () => {
       </div>
       <div className="flex flex-col w-full gap-4 border-b-1 border-[#B8B9B8]">
         <div className="flex-c-b w-full mt-6 gap-2">
-          <ul className="flex-c gap-4 max-sm:hidden">
-            {dashboardLinks.map((link) => (
-              <Link
-                href={link.link}
-                key={link.id}
-                className={`${
-                  pathname === link.link
-                    ? "text-primary-green  border-b-primary-green border-b-1"
-                    : "text-[#737774]"
-                }  font-semibold capitalize`}
-              >
-                <li>{link.name}</li>
-              </Link>
-            ))}
-          </ul>
-          <div
-            className={`sm:hidden flex-1 max-w-[190px] rounded-lg px-2 flex-c-b relative max-sm:h-[46px] border-1 border-[#D9D9D9]`}
-          >
-            <div
-              className="flex-c gap-3 flex-wrap flex-1 2-full "
-              onClick={() => setOpen((prev) => !prev)}
-            >
-              <p className=" max-sm:text-sm capitalize">
-                {showLastPathOfLink(pathname)}
-              </p>
-            </div>
-            <span className="block" onClick={() => setOpen((prev) => !prev)}>
-              <IoIosArrowDown />
-            </span>
-            {open && (
-              <ul className="absolute flex flex-col top-full right-0 w-full max-sm:w-full bg-slate-50 shadow justify-center p-2 rounded-md">
-                {dashboardLinks.map((link, index) => (
-                  <Link
-                    href={link.link}
-                    key={index}
-                    className="w-full hover:bg-gray-200"
-                  >
-                    <li
-                      onClick={() => {
-                        setOpen((prev) => !prev);
-                      }}
-                      className=" max-sm:text-sm  capitalize"
-                    >
-                      {link.name}
-                    </li>
-                  </Link>
-                ))}
-              </ul>
-            )}
-          </div>
+          <DashboardLinks />
           <button className="custom-btn">
             <Link href="/dashboard/job/list-new-job">Post a Job</Link>
           </button>
         </div>
-        <div className="flex justify-between w-full sm:gap-8 gap-4 pb-6">
+        <div className="flex justify-between w-full sm:gap-8 gap-4 pb-6 max-md:flex-col">
           <div className="flex-1">
             <p className=" max-sm:text-sm">
               Amet minim mollit non deserunt ullamco est sit aliqua dolor do

@@ -99,7 +99,7 @@ const DashboardCards = () => {
               <div className="flex-c w-full gap-4">
                 <div className="flex-1">
                   <progress
-                    className="progress w-56"
+                    className="progress lg:max-w-56 lg:w-full w-56"
                     value="57"
                     max="100"
                   ></progress>
@@ -112,7 +112,7 @@ const DashboardCards = () => {
               <div className="flex-c w-full gap-4">
                 <div className="flex-1">
                   <progress
-                    className="progress progress-warning w-56"
+                    className="progress progress-warning lg:max-w-56 lg:w-full w-56"
                     value="40"
                     max="100"
                   ></progress>
@@ -127,7 +127,7 @@ const DashboardCards = () => {
               <div className="flex-c w-full gap-4">
                 <div className="flex-1">
                   <progress
-                    className="progress progress-success w-56"
+                    className="progress progress-success lg:max-w-56 lg:w-full w-56"
                     value="40"
                     max="100"
                   ></progress>
@@ -140,7 +140,7 @@ const DashboardCards = () => {
               <div className="flex-c w-full gap-4">
                 <div className="flex-1">
                   <progress
-                    className="progress progress-error w-56"
+                    className="progress progress-error lg:max-w-56 lg:w-full w-56"
                     value="100"
                     max="100"
                   ></progress>
@@ -159,7 +159,7 @@ const DashboardCards = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white w-full rounded-[10px] p-6 max-sm:px-3">
+      <div className="bg-white w-full rounded-lg p-6 max-sm:px-3">
         <div className="flex justify-between items-center w-full">
           <div className="flex items-center gap-2">
             <p className="font-medium max-sm:text-sm">Messages</p>
@@ -178,7 +178,7 @@ const DashboardCards = () => {
         <div className="flex flex-col mt-10 gap-4 max-lg:flex-row overflow-x-scroll max-lg:gap-8">
           {dashboardMsgProfiles.slice(0, 3).map((profile, index) => (
             <div className="flex w-full gap-3" key={index}>
-              <div className="w-[40px] h-[40px] rounded-full bg-[#6B7280] flex items-center justify-center relative">
+              <div className="w-[40px] h-[40px] rounded-full bg-[#6B7280] flex-c justify-center relative">
                 {profile.profile ? (
                   <Image
                     src={profile.profile}
