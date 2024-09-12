@@ -9,6 +9,7 @@ import { CiSearch } from "react-icons/ci";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { Popconfirm, PopconfirmProps } from "antd";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Pagination from "react-responsive-pagination";
 
 import { dashboardLinks } from "@/constants";
@@ -23,7 +24,6 @@ import {
   numberWithCommas,
   showLastPathOfLink,
 } from "@/helpers";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const DashboardJobContent = () => {
   const pathname = usePathname();
@@ -137,8 +137,8 @@ const DashboardJobContent = () => {
             <input
               type="text"
               placeholder="Search"
-              //   value={search}
-              //   onChange={handleChange}
+              value={search}
+              onChange={handleChange}
               className="focus:outline-none max-md:text-14 w-full bg-white"
             />
           </div>
