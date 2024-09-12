@@ -159,7 +159,7 @@ const DashboardCards = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white w-full rounded-[10px] p-6 max-sm:px-3">
+      <div className="bg-white w-full rounded-lg p-6 max-sm:px-3">
         <div className="flex justify-between items-center w-full">
           <div className="flex items-center gap-2">
             <p className="font-medium max-sm:text-sm">Messages</p>
@@ -178,7 +178,7 @@ const DashboardCards = () => {
         <div className="flex flex-col mt-10 gap-4 max-lg:flex-row overflow-x-scroll max-lg:gap-8">
           {dashboardMsgProfiles.slice(0, 3).map((profile, index) => (
             <div className="flex w-full gap-3" key={index}>
-              <div className="w-[40px] h-[40px] rounded-full bg-[#6B7280] flex items-center justify-center relative">
+              <div className="w-[40px] h-[40px] rounded-full bg-[#6B7280] flex-c justify-center relative">
                 {profile.profile ? (
                   <Image
                     src={profile.profile}
