@@ -99,7 +99,7 @@ const DashboardCards = () => {
               <div className="flex-c w-full gap-4">
                 <div className="flex-1">
                   <progress
-                    className="progress w-56"
+                    className="progress lg:max-w-56 lg:w-full w-56"
                     value="57"
                     max="100"
                   ></progress>
@@ -112,7 +112,7 @@ const DashboardCards = () => {
               <div className="flex-c w-full gap-4">
                 <div className="flex-1">
                   <progress
-                    className="progress progress-warning w-56"
+                    className="progress progress-warning lg:max-w-56 lg:w-full w-56"
                     value="40"
                     max="100"
                   ></progress>
@@ -127,7 +127,7 @@ const DashboardCards = () => {
               <div className="flex-c w-full gap-4">
                 <div className="flex-1">
                   <progress
-                    className="progress progress-success w-56"
+                    className="progress progress-success lg:max-w-56 lg:w-full w-56"
                     value="40"
                     max="100"
                   ></progress>
@@ -140,7 +140,7 @@ const DashboardCards = () => {
               <div className="flex-c w-full gap-4">
                 <div className="flex-1">
                   <progress
-                    className="progress progress-error w-56"
+                    className="progress progress-error lg:max-w-56 lg:w-full w-56"
                     value="100"
                     max="100"
                   ></progress>

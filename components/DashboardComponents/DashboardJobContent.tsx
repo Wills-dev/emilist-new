@@ -122,7 +122,7 @@ const DashboardJobContent = () => {
             <Link href="/dashboard/job/list-new-job">Post a Job</Link>
           </button>
         </div>
-        <div className="flex justify-between w-full sm:gap-8 gap-4 pb-6">
+        <div className="flex justify-between w-full sm:gap-8 gap-4 pb-6 max-md:flex-col">
           <div className="flex-1">
             <p className=" max-sm:text-sm">
               Amet minim mollit non deserunt ullamco est sit aliqua dolor do
