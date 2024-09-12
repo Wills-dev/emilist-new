@@ -160,3 +160,12 @@ input[type="number"] {
 .leaflet-top {
   z-index: 0 !important;
 }
+
+.ant-btn-primary {
+  background-color: #25c269 !important;
+}
+
+.ant-btn-default:hover {
+  border: 1px solid #25c269 !important;
+  color: #25c269 !important;
+}

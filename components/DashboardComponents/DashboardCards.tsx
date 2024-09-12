@@ -33,8 +33,8 @@ const DashboardCards = () => {
   const [next3Days, setNext3Days] = useState(getNextNDays(currentDate, 4));
   return (
     <div className="flex flex-col gap-4 w-full max-lg:overflow-x-scroll max-lg:flex-row">
-      <div className="bg-white w-full p-6 flex flex-col gap-6 rounded-lg">
-        <h4 className="capitalize sm:text-[20px] font-semibold">
+      <div className="bg-white w-full p-6 max-sm:px-3 flex flex-col gap-6 rounded-lg">
+        <h4 className="capitalize sm:text-lg font-semibold">
           {currentDate.toLocaleDateString("en-US", {
             month: "short",
             day: "numeric",

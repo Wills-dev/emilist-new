@@ -2994,3 +2994,24 @@ export const levels = [
   "Level 2 & Above",
   "Level 1 & Above",
 ];
+
+export const dashboardLinks = [
+  { id: 1, name: "jobs", link: "/dashboard/job" },
+
+  {
+    id: 2,
+    name: "experts",
+    link: "/dashboard/expert",
+  },
+
+  {
+    id: 3,
+    name: "materials",
+    link: "/dashboard/material",
+  },
+  {
+    id: 4,
+    name: "leads",
+    link: "/dashboard/lead",
+  },
+];
