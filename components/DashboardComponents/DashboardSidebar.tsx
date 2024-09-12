@@ -94,9 +94,7 @@ const DashboardSidebar = ({
                     </Link>
                   </li>
                   <li className="hover:text-green-600 duration-300 ">
-                    <Link href="/dashboard/job/all-listed-jobs">
-                      All listed jobs
-                    </Link>
+                    <Link href="/dashboard/job">All listed jobs</Link>
                   </li>
                   <li className="hover:text-green-600 duration-300 ">
                     <Link href="/dashboard/job/my-listed-jobs">
@@ -210,9 +208,7 @@ const DashboardSidebar = ({
                   className=" flex flex-col gap-4 pl-8"
                 >
                   <li className="hover:text-green-600 duration-300 ">
-                    <Link href="/dashboard/material/all-listed-materials">
-                      All listed materials
-                    </Link>
+                    <Link href="/dashboard/material">All listed materials</Link>
                   </li>
                   <li className="hover:text-green-600 duration-300 ">
                     <Link href="/dashboard/material/my-listed-materials">

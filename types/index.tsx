@@ -55,3 +55,13 @@ export interface PostJobType {
   milestonesNumber: number;
   budget: any;
 }
+
+export interface MaterialDetailType {
+  product_name: string;
+  brand: string;
+  description: string;
+  quantity_available: string | number;
+  price: string | number;
+  supplier: string;
+  location: string;
+}

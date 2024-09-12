@@ -19,7 +19,7 @@ import { useFetchJobs } from "@/hooks/useFetchJobs";
 import { useGetUserSavedJobs } from "@/hooks/useGetUserSavedJobs";
 import { Capitalize, formatCreatedAt, numberWithCommas } from "@/helpers";
 
-const DashboardJobContent = () => {
+const DashboardLeadContent = () => {
   const { handleSaveJob, rerender } = useSaveJob();
   const { handleUnsaveJob, unsaveRerenderr } = useUnsaveJob();
   const { handleBlackListJob, rerenderrr } = useBlackListJob();
@@ -60,9 +60,7 @@ const DashboardJobContent = () => {
       <div className="flex flex-col w-full gap-4 border-b-1 border-[#B8B9B8]">
         <div className="flex-c-b w-full mt-6 gap-2">
           <DashboardLinks />
-          <button className="custom-btn">
-            <Link href="/dashboard/job/list-new-job">Post a Job</Link>
-          </button>
+          {allJobs?.length > 1 && <p>{allJobs?.length} recommended jobs</p>}
         </div>
         <div className="flex justify-between w-full sm:gap-8 gap-4 pb-6 max-md:flex-col">
           <div className="flex-1">
@@ -222,4 +220,4 @@ const DashboardJobContent = () => {
   );
 };
 
-export default DashboardJobContent;
+export default DashboardLeadContent;

@@ -208,7 +208,7 @@ const DashboardNav = () => {
             <div className="flex-c gap-6">
               <div className="gap-6 xl:flex items-center hidden">
                 <button>
-                  <Link href="/dashboard/messages">
+                  <Link href="/messages">
                     <Image
                       src="/assets/icons/sms.svg"
                       alt="menu"
@@ -236,7 +236,7 @@ const DashboardNav = () => {
                   </AnimatePresence>
                 </div>
                 <div>
-                  <Link href="/dashboard/cart">
+                  <Link href="/cart">
                     <Image
                       src="/assets/icons/shopping-cart.svg"
                       alt="menu"

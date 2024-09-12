@@ -110,7 +110,7 @@ const ListNewJobForm = () => {
           </div>
         </div>
         {/* <div className="w-full">
-          <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
+          <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
             Amount
           </p>
           <div className="w-full">
@@ -168,7 +168,7 @@ const ListNewJobForm = () => {
               </div>
             </div>
             <div className="w-full">
-              <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
+              <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
                 Narrow down to a service
               </p>
               <div className="w-full">
@@ -199,7 +199,7 @@ const ListNewJobForm = () => {
               </div>
             </div>
             <div className="w-full">
-              <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
+              <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
                 Enter a title for your project
               </p>
               <div className="w-full">
@@ -290,7 +290,7 @@ const ListNewJobForm = () => {
               </div>
             </div>
             <div className="w-full">
-              <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
+              <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
                 Project duration
               </p>
               <div className="w-full grid grid-cols-3 gap-4">
@@ -374,7 +374,7 @@ const ListNewJobForm = () => {
             {projectType === "biddable" ? (
               <>
                 <div className="w-full">
-                  <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
+                  <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
                     Maxinum price
                   </p>
                   <div className="w-full">
@@ -392,7 +392,7 @@ const ListNewJobForm = () => {
                 </div>
 
                 <div className="w-full">
-                  <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
+                  <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
                     Bid Range
                   </p>
                   <div className="w-full">
@@ -409,7 +409,7 @@ const ListNewJobForm = () => {
               </>
             ) : projectType === "regular" ? (
               <div className="w-full">
-                <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
+                <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
                   Budget
                 </p>
                 <div className="w-full">
@@ -470,17 +470,14 @@ const ListNewJobForm = () => {
                     height={25}
                     className="object-contain w-6 h-6"
                   />
-                  <label
-                    htmlFor={level}
-                    className="ml-3 text-base text-[#303632]"
-                  >
+                  <label htmlFor={level} className="ml-3  text-[#303632]">
                     {level}
                   </label>
                 </div>
               ))}
             </div>
             <div className="w-full my-3">
-              <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
+              <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
                 Milestone
               </p>
               <div className="expert-reg-input-div">

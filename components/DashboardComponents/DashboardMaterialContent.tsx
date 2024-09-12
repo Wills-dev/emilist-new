@@ -5,26 +5,25 @@ import Image from "next/image";
 
 import { CiSearch } from "react-icons/ci";
 import { FaRegHeart } from "react-icons/fa";
-import { IoCopyOutline } from "react-icons/io5";
 import Pagination from "react-responsive-pagination";
 
 import DashboardLinks from "./DashboardLinks";
 import StarRating from "../StarRating/StarRating";
 
 import { Capitalize, numberWithCommas } from "@/helpers";
-import { useFetchExperts } from "@/hooks/useFetchExperts";
+import { useFetchMaterials } from "@/hooks/useFetchMaterials";
 
-const DashboardExpertContent = () => {
+const DashboardMaterialContent = () => {
   const {
     loading,
-    allExperts,
-    allExpertsData,
+    allMaterials,
+    allMaterialsData,
     search,
     handleChange,
     handlePageChange,
     totalPages,
     currentPage,
-  } = useFetchExperts();
+  } = useFetchMaterials();
 
   return (
     <div className="col-span-7 max-lg:col-span-10 w-full bg-white p-6 rounded-lg max-sm:px-3">
@@ -37,7 +36,9 @@ const DashboardExpertContent = () => {
         <div className="flex-c-b w-full mt-6 gap-2">
           <DashboardLinks />
           <button className="custom-btn">
-            <Link href="/expert/register">Join as an expert</Link>
+            <Link href="/dashboard/material/list-new-material">
+              Post a product
+            </Link>
           </button>
         </div>
         <div className="flex justify-between w-full sm:gap-8 gap-4 pb-6 max-md:flex-col">
@@ -69,23 +70,23 @@ const DashboardExpertContent = () => {
           </div>
         ) : (
           <>
-            {allExperts.length < 1 ? (
+            {allMaterials.length < 1 ? (
               <p className="py-2">No expert or service listed</p>
             ) : (
               <>
-                {allExperts.length > 0 && allExpertsData.length < 1 ? (
+                {allMaterials.length > 0 && allMaterialsData.length < 1 ? (
                   <p className="py-2">
                     No result found, try searching for something else
                   </p>
                 ) : (
                   <>
-                    {allExpertsData?.map((expert: any) => (
+                    {allMaterialsData?.map((material: any) => (
                       <div
-                        key={expert.id}
+                        key={material.Id}
                         className="w-full grid md:grid-cols-5 grid-cols-6 gap-3 py-4 sm:px-6 hover:bg-gray-100 duration-300"
                       >
                         <Image
-                          src="/assets/images/privateExpertImg.png"
+                          src={material?.Images[0]}
                           width={140}
                           height={100}
                           alt="service"
@@ -93,26 +94,33 @@ const DashboardExpertContent = () => {
                         />
                         <div className="col-span-4 flex justify-between max-md:flex-col md:gap-10 gap-2">
                           <div className="flex flex-col gap-2 flex-1">
-                            <h4 className="sm:text-2xl font-bold">
-                              {expert?.service && Capitalize(expert?.service)}
-                            </h4>
-                            <p className="max-sm:text-sm">{expert?.bio}</p>
+                            <Link
+                              href={`/material/info/${material.Id}`}
+                              className="sm:text-2xl font-bold hover:text-primary-green duration-300"
+                            >
+                              {material?.productName &&
+                                Capitalize(material?.productName)}
+                            </Link>
+                            {material?.description &&
+                            material?.description.length > 200 ? (
+                              <p className="max-sm:text-sm">
+                                {material?.description.slice(0, 200)}...
+                                <Link
+                                  href={`/material/info/${material.Id}`}
+                                  className="underline text-primary-green text-xs"
+                                >
+                                  Read more
+                                </Link>
+                              </p>
+                            ) : (
+                              <p className="max-sm:text-sm">
+                                {material?.description}
+                              </p>
+                            )}
                             <div className="flex-c-b  sm:gap-4 gap-2 flex-wrap">
                               <div className="flex-c gap-1 max-sm:text-sm ">
                                 <StarRating rating={4} />{" "}
                                 <span className="sm:text-sm text-xs">(51)</span>
-                              </div>
-                              <div className="flex-c gap-1">
-                                <Image
-                                  src="/assets/icons/briefcase.svg"
-                                  width={40}
-                                  height={40}
-                                  alt="brief-case"
-                                  className="w-4 h-4 object-contain"
-                                />
-                                <p className="sm:text-sm text-xs">
-                                  52 Jobs completed
-                                </p>
                               </div>
                             </div>
                             <div className="flex-c-b sm:py-2">
@@ -125,14 +133,12 @@ const DashboardExpertContent = () => {
                                   className="object-cover h-8 w-8 rounded-full"
                                 />
                                 <h6 className="sm:text-sm text-xs">
-                                  {expert?.firstname &&
-                                    Capitalize(expert?.firstname)}{" "}
-                                  {expert?.lastname &&
-                                    Capitalize(expert?.lastname)}
+                                  Victor Kings
+                                  {/* {material?.firstname &&
+                                    Capitalize(material?.firstname)}{" "}
+                                  {material?.lastname &&
+                                    Capitalize(material?.lastname)} */}
                                 </h6>
-                              </div>
-                              <div className="max-sm:text-xs font-medium uppercase">
-                                Level 5
                               </div>
                             </div>
                           </div>
@@ -140,20 +146,14 @@ const DashboardExpertContent = () => {
                             <div className="flex flex-col gap-1">
                               <p className="sm:text-2xl font-bold text-primary-green">
                                 ₦{" "}
-                                {expert?.startingprice &&
-                                  numberWithCommas(expert?.startingprice)}
-                              </p>
-                              <p className="sm:text-sm text-xs">
-                                Starting price
+                                {material?.price &&
+                                  numberWithCommas(material?.price)}
                               </p>
                             </div>
 
-                            <Link
-                              href={`/expert/info/${expert?.id}`}
-                              className="view-btn max-sm:text-sm"
-                            >
-                              View Details
-                            </Link>
+                            <button className="view-btn max-sm:text-sm">
+                              Add to Cart
+                            </button>
                           </div>
                         </div>
                         <div className="col-span-1 max-md:hidden" />
@@ -163,12 +163,6 @@ const DashboardExpertContent = () => {
                               <FaRegHeart />
                             </span>
                             <p className="sm:text-sm text-xs">Favourite</p>
-                          </div>
-                          <div className="flex-c gap-2 cursor-pointer">
-                            <span className="text-lg block">
-                              <IoCopyOutline />
-                            </span>
-                            <p className="sm:text-sm text-xs">Compare</p>
                           </div>
                         </div>
                       </div>
@@ -192,4 +186,4 @@ const DashboardExpertContent = () => {
   );
 };
 
-export default DashboardExpertContent;
+export default DashboardMaterialContent;

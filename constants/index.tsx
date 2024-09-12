@@ -3015,3 +3015,82 @@ export const dashboardLinks = [
     link: "/dashboard/lead",
   },
 ];
+
+export const buildingMaterials = [
+  {
+    id: 1,
+    name: "Cement",
+    subCategory: [
+      "Ordinary Portland Cement",
+      "White Cement",
+      "Rapid Hardening Cement",
+    ],
+  },
+  {
+    id: 2,
+    name: "Bricks",
+    subCategory: ["Clay Bricks", "Concrete Bricks", "Fly Ash Bricks"],
+  },
+  {
+    id: 3,
+    name: "Concrete",
+    subCategory: [
+      "Reinforced Concrete",
+      "Precast Concrete",
+      "Lightweight Concrete",
+    ],
+  },
+  {
+    id: 4,
+    name: "Steel",
+    subCategory: ["Structural Steel", "Reinforcing Steel", "Stainless Steel"],
+  },
+  {
+    id: 5,
+    name: "Sand",
+    subCategory: ["River Sand", "Pit Sand", "M-Sand"],
+  },
+  {
+    id: 6,
+    name: "Gravel",
+    subCategory: ["Pea Gravel", "Crushed Stone", "Bank Gravel"],
+  },
+  {
+    id: 7,
+    name: "Glass",
+    subCategory: ["Float Glass", "Tempered Glass", "Laminated Glass"],
+  },
+  {
+    id: 8,
+    name: "Wood",
+    subCategory: ["Softwood", "Hardwood", "Plywood"],
+  },
+  {
+    id: 9,
+    name: "Tiles",
+    subCategory: ["Ceramic Tiles", "Porcelain Tiles", "Vinyl Tiles"],
+  },
+  {
+    id: 10,
+    name: "Insulation",
+    subCategory: [
+      "Fiberglass Insulation",
+      "Foam Board Insulation",
+      "Spray Foam Insulation",
+    ],
+  },
+  {
+    id: 11,
+    name: "Plasterboard",
+    subCategory: [
+      "Moisture-Resistant Plasterboard",
+      "Fire-Resistant Plasterboard",
+      "Acoustic Plasterboard",
+    ],
+  },
+  {
+    id: 12,
+    name: "Paint",
+    subCategory: ["Oil-Based Paint", "Water-Based Paint", "Acrylic Paint"],
+  },
+];
