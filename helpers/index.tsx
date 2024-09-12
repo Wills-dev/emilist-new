@@ -126,3 +126,7 @@ export const handleWheel = (event: React.WheelEvent<HTMLInputElement>) => {
   event.target as HTMLElement;
   event.preventDefault();
 };
+
+export const showLastPathOfLink = (link: string) => {
+  return link.split("/").filter(Boolean).pop();
+};

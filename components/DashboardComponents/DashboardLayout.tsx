@@ -11,7 +11,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     <main className="relative">
       <DashboardNav />
       <section className="pt-28 bg-[#F0FDF5] w-full padding-x min-h-screen">
-        <div className="grid grid-cols-11 gap-4 py-10">
+        <div className="grid grid-cols-11 gap-4 py-10 max-sm:pt-4">
           <div className="lg:col-span-8 col-span-11  w-full flex flex-col gap-4 ">
             <DashboardHeader />
             <div className="lg:hidden max-lg:col-span-11 w-full">
