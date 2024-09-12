@@ -5,7 +5,6 @@ import Image from "next/image";
 
 import { CiSearch } from "react-icons/ci";
 import { FaRegHeart } from "react-icons/fa";
-import { IoCopyOutline } from "react-icons/io5";
 import Pagination from "react-responsive-pagination";
 
 import DashboardLinks from "./DashboardLinks";
@@ -25,8 +24,6 @@ const DashboardMaterialContent = () => {
     totalPages,
     currentPage,
   } = useFetchMaterials();
-
-  console.log("allMaterials", allMaterials);
 
   return (
     <div className="col-span-7 max-lg:col-span-10 w-full bg-white p-6 rounded-lg max-sm:px-3">

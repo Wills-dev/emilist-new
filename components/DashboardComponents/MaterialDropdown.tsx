@@ -19,10 +19,7 @@ const MaterialDropdown = ({
     >
       <ul className="flex flex-col gap-3 w-full ">
         <li className="capitalize hover:text-primary-green duration-300">
-          <Link
-            href="/dashboard/material/all-listed-materials"
-            onClick={handleMaterialDropDown}
-          >
+          <Link href="/dashboard/material" onClick={handleMaterialDropDown}>
             All listed materials
           </Link>
         </li>

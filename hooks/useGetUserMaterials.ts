@@ -1,10 +1,14 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useMemo, useState } from "react";
 
+import { AuthContext } from "@/utils/AuthState";
 import { axiosInstance } from "@/axiosInstance/baseUrl";
+import { promiseErrorFunction } from "@/helpers";
 
-export const useFetchMaterials = () => {
-  const [allMaterials, setAllMaterials] = useState<any>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+export const useGetUserMaterials = () => {
+  const { currentUser } = useContext(AuthContext);
+
+  const [myMaterials, setMyMaterials] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState("");
@@ -19,15 +23,18 @@ export const useFetchMaterials = () => {
   };
 
   const getAllMaterials = async () => {
+    setIsLoading(true);
+    const userId = currentUser.unique_id;
     try {
-      const data = await axiosInstance.get(`/fetchMaterials`);
-      setAllMaterials(data?.data);
-      const totalJobs = data?.data?.length;
+      const data = await axiosInstance.get(`/fetchMaterialsUser/${userId}`);
+      setMyMaterials(data?.data?.user_materials);
+      const totalJobs = data?.data?.user_materials?.length;
       setTotalPages(Math.ceil(totalJobs / ITEMS_PER_PAGE));
     } catch (error: any) {
-      console.log("error fetching all materials", error);
+      console.log("error fetching materials", error);
+      promiseErrorFunction(error);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -35,8 +42,8 @@ export const useFetchMaterials = () => {
     getAllMaterials();
   }, []);
 
-  const allMaterialsData = useMemo(() => {
-    let computedMaterials = allMaterials;
+  const allMaterialData = useMemo(() => {
+    let computedMaterials = myMaterials;
 
     if (search) {
       computedMaterials = computedMaterials?.filter(
@@ -55,37 +62,17 @@ export const useFetchMaterials = () => {
       (currentPage - 1) * ITEMS_PER_PAGE,
       (currentPage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
     );
-  }, [allMaterials, currentPage, search]);
+  }, [myMaterials, currentPage, search]);
 
-  // const onError = (error: any) => {
-  //   if (error) {
-  //     console.log("error fetching materials", error);
-  //   }
-  // };
-
-  // const getAllMaterials = () => {
-  //   return axiosInstance.get("/fetchMaterials").then((res) => res?.data);
-  // };
-
-  // const { data: allMaterials, isLoading: loading } = useQuery(
-  //   "all materials",
-  //   getAllMaterials,
-  //   {
-  //     onError: onError,
-  //     staleTime: 60 * 60 * 1000,
-  //     cacheTime: 60 * 60 * 1000,
-  //     refetchOnMount: false,
-  //     refetchOnWindowFocus: false,
-  //   }
-  // );
   return {
-    loading,
-    allMaterials,
-    allMaterialsData,
-    search,
+    allMaterialData,
     handleChange,
     handlePageChange,
+    isLoading,
+    search,
+    getAllMaterials,
     totalPages,
     currentPage,
+    myMaterials,
   };
 };
