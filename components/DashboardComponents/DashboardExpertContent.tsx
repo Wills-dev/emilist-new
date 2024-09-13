@@ -69,11 +69,11 @@ const DashboardExpertContent = () => {
           </div>
         ) : (
           <>
-            {allExperts.length < 1 ? (
+            {allExperts?.length < 1 ? (
               <p className="py-2">No expert or service listed</p>
             ) : (
               <>
-                {allExperts.length > 0 && allExpertsData.length < 1 ? (
+                {allExperts?.length > 0 && allExpertsData.length < 1 ? (
                   <p className="py-2">
                     No result found, try searching for something else
                   </p>
