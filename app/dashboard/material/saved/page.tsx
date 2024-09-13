@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect } from "react";
 
 import { FaHeart } from "react-icons/fa";
 import Pagination from "react-responsive-pagination";
@@ -10,19 +11,25 @@ import StarRating from "@/components/StarRating/StarRating";
 import DashboardNav from "@/components/DashboardComponents/DashboardNav";
 
 import { Capitalize, numberWithCommas } from "@/helpers";
-import { useFetchMaterials } from "@/hooks/useFetchMaterials";
+import { useGetUserSavedMaterials } from "@/hooks/useGetUserSavedMaterials";
+import { useUnsaveMaterial } from "@/hooks/useUnsaveMaterial";
 
 const SavedMaterials = () => {
+  const { handleUnsaveMaterial, unsaveRerenderr } = useUnsaveMaterial();
   const {
-    loading,
-    allMaterials,
-    allMaterialsData,
+    saveLoading,
+    allUserSavedMaterialsData,
+    allUserSavedMaterials,
     search,
-    handleChange,
     handlePageChange,
-    totalPages,
     currentPage,
-  } = useFetchMaterials();
+    totalPages,
+    getAllUserSavedMaterials,
+  } = useGetUserSavedMaterials();
+
+  useEffect(() => {
+    getAllUserSavedMaterials();
+  }, [unsaveRerenderr]);
 
   return (
     <main className="relative">
@@ -33,7 +40,7 @@ const SavedMaterials = () => {
             Saved Materials
           </h1>
         </div>
-        {loading ? (
+        {saveLoading ? (
           <div className="flex item-center justify-center text-green-500 mt-6 h-[30vh]">
             <span className="loading loading-bars loading-lg"></span>
           </div>
@@ -41,23 +48,24 @@ const SavedMaterials = () => {
           <div className="flex max-lg:flex-col-reverse lg:gap-12  gap-6 w-full">
             <div className="flex-1 w-full flex flex-col gap-4">
               <>
-                {allMaterials.length < 1 ? (
-                  <p className="py-2">No expert or service listed</p>
+                {allUserSavedMaterials?.length < 1 ? (
+                  <p className="py-2">No expert or service saved</p>
                 ) : (
                   <>
-                    {allMaterials.length > 0 && allMaterialsData.length < 1 ? (
+                    {allUserSavedMaterials?.length > 0 &&
+                    allUserSavedMaterialsData?.length < 1 ? (
                       <p className="py-2">
                         No result found, try searching for something else
                       </p>
                     ) : (
                       <>
-                        {allMaterialsData?.map((material: any) => (
+                        {allUserSavedMaterialsData?.map((material: any) => (
                           <div
-                            key={material.Id}
+                            key={material._id}
                             className="w-full grid md:grid-cols-5 grid-cols-6 gap-3 py-4 sm:px-6 hover:bg-gray-100 duration-300 shadow rounded-2xl"
                           >
                             <Image
-                              src={material?.Images[0]}
+                              src={material?.Images && material?.Images[0]}
                               width={140}
                               height={100}
                               alt="service"
@@ -66,18 +74,18 @@ const SavedMaterials = () => {
                             <div className="col-span-4 flex justify-between max-md:flex-col md:gap-10 gap-2">
                               <div className="flex flex-col gap-2 flex-1">
                                 <Link
-                                  href={`/material/info/${material.Id}`}
+                                  href={`/material/info/${material._id}`}
                                   className="sm:text-2xl font-bold hover:text-primary-green duration-300"
                                 >
-                                  {material?.productName &&
-                                    Capitalize(material?.productName)}
+                                  {material?.product_name &&
+                                    Capitalize(material?.product_name)}
                                 </Link>
                                 {material?.description &&
                                 material?.description.length > 200 ? (
                                   <p className="max-sm:text-sm">
                                     {material?.description.slice(0, 200)}...
                                     <Link
-                                      href={`/material/info/${material.Id}`}
+                                      href={`/material/info/${material._id}`}
                                       className="underline text-primary-green text-xs"
                                     >
                                       Read more
@@ -132,7 +140,12 @@ const SavedMaterials = () => {
                             <div className="col-span-1 max-md:hidden" />
                             <div className="md:col-span-4 col-span-6 border-t-1 border-[#B8B9B8] flex-c justify-end sm:gap-10 gap-5 pt-2">
                               <div className="flex-c gap-2 cursor-pointer">
-                                <span className="block text-xl text-pink-500 cursor-pointer">
+                                <span
+                                  className="block text-xl text-pink-500 cursor-pointer"
+                                  onClick={() =>
+                                    handleUnsaveMaterial(material._id)
+                                  }
+                                >
                                   <FaHeart />
                                 </span>
                                 <p className="sm:text-sm text-xs">Favourite</p>

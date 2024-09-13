@@ -2,18 +2,26 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect } from "react";
 
 import { CiSearch } from "react-icons/ci";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Pagination from "react-responsive-pagination";
 
 import DashboardLinks from "./DashboardLinks";
 import StarRating from "../StarRating/StarRating";
 
 import { Capitalize, numberWithCommas } from "@/helpers";
+import { useSaveMaterials } from "@/hooks/useSaveMaterials";
+import { useUnsaveMaterial } from "@/hooks/useUnsaveMaterial";
 import { useFetchMaterials } from "@/hooks/useFetchMaterials";
+import { useGetUserSavedMaterials } from "@/hooks/useGetUserSavedMaterials";
 
 const DashboardMaterialContent = () => {
+  const { handleSaveMaterial, rerender } = useSaveMaterials();
+  const { allUserSavedMaterials, getAllUserSavedMaterials } =
+    useGetUserSavedMaterials();
+  const { handleUnsaveMaterial, unsaveRerenderr } = useUnsaveMaterial();
   const {
     loading,
     allMaterials,
@@ -23,7 +31,16 @@ const DashboardMaterialContent = () => {
     handlePageChange,
     totalPages,
     currentPage,
+    getAllMaterials,
   } = useFetchMaterials();
+
+  const isSaved = (job: any) =>
+    allUserSavedMaterials?.some((savedJob: any) => savedJob.id === job.Id);
+
+  useEffect(() => {
+    getAllMaterials();
+    getAllUserSavedMaterials();
+  }, [rerender, unsaveRerenderr]);
 
   return (
     <div className="col-span-7 max-lg:col-span-10 w-full bg-white p-6 rounded-lg max-sm:px-3">
@@ -70,11 +87,11 @@ const DashboardMaterialContent = () => {
           </div>
         ) : (
           <>
-            {allMaterials.length < 1 ? (
+            {allMaterials?.length < 1 ? (
               <p className="py-2">No expert or service listed</p>
             ) : (
               <>
-                {allMaterials.length > 0 && allMaterialsData.length < 1 ? (
+                {allMaterials?.length > 0 && allMaterialsData.length < 1 ? (
                   <p className="py-2">
                     No result found, try searching for something else
                   </p>
@@ -159,9 +176,23 @@ const DashboardMaterialContent = () => {
                         <div className="col-span-1 max-md:hidden" />
                         <div className="md:col-span-4 col-span-6 border-t-1 border-[#B8B9B8] flex-c justify-end sm:gap-10 gap-5 py-2">
                           <div className="flex-c gap-2 cursor-pointer">
-                            <span className="text-lg block">
-                              <FaRegHeart />
-                            </span>
+                            {isSaved(material) ? (
+                              <span
+                                className="block text-xl text-pink-500 cursor-pointer"
+                                onClick={() =>
+                                  handleUnsaveMaterial(material.Id)
+                                }
+                              >
+                                <FaHeart />
+                              </span>
+                            ) : (
+                              <span
+                                className="block text-xl cursor-pointer"
+                                onClick={() => handleSaveMaterial(material.Id)}
+                              >
+                                <FaRegHeart />
+                              </span>
+                            )}
                             <p className="sm:text-sm text-xs">Favourite</p>
                           </div>
                         </div>

@@ -87,5 +87,6 @@ export const useFetchMaterials = () => {
     handlePageChange,
     totalPages,
     currentPage,
+    getAllMaterials,
   };
 };

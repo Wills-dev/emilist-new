@@ -24,17 +24,17 @@ export const useGetUserSavedJobs = () => {
       try {
         const data = await axiosInstance.get(`/saved-jobs/${userId}`);
         if (data?.data?.message === "No saved jobs found for the user") {
-          setLoading(false);
           setAllUserSavedJobs([]);
+        } else {
+          setAllUserSavedJobs(data?.data?.saved_jobs);
+          const totalJobs = data?.data?.saved_jobs?.length;
+          setTotalPages(Math.ceil(totalJobs / ITEMS_PER_PAGE));
         }
-        setAllUserSavedJobs(data?.data?.saved_jobs);
-        const totalJobs = data?.data?.saved_jobs?.length;
-        setTotalPages(Math.ceil(totalJobs / ITEMS_PER_PAGE));
-        setLoading(false);
       } catch (error: any) {
-        setLoading(false);
         console.log("error getting user saved jobs", error);
         promiseErrorFunction(error);
+      } finally {
+        setLoading(false);
       }
     }
   };

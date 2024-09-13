@@ -93,11 +93,11 @@ const DashboardJobContent = () => {
           </div>
         ) : (
           <>
-            {allJobs.length < 1 ? (
+            {allJobs?.length < 1 ? (
               <p className="py-2">No job listed</p>
             ) : (
               <>
-                {allJobs.length > 0 && allJobsData.length < 1 ? (
+                {allJobs?.length > 0 && allJobsData.length < 1 ? (
                   <p className="py-2">
                     No result found, try searching for something else
                   </p>
