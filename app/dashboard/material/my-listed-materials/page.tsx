@@ -33,7 +33,7 @@ const MyListMaterials = () => {
           </h1>
           <Link
             href="/dashboard/material/list-new-material"
-            className="custom-btn max-sm:hidden"
+            className="custom-btn max-sm:h_idden"
           >
             List a New Material
           </Link>
@@ -71,7 +71,7 @@ const MyListMaterials = () => {
                             <div className="col-span-4 flex justify-between max-md:flex-col md:gap-10 gap-2">
                               <div className="flex flex-col gap-2 flex-1">
                                 <Link
-                                  href={`/material/info/${material.Id}`}
+                                  href={`/dashboard/material/info/${material._id}`}
                                   className="sm:text-2xl font-bold hover:text-primary-green duration-300"
                                 >
                                   {material?.ProductName &&
@@ -82,7 +82,7 @@ const MyListMaterials = () => {
                                   <p className="max-sm:text-sm">
                                     {material?.description.slice(0, 100)}...
                                     <Link
-                                      href={`/material/info/${material.Id}`}
+                                      href={`/dashboard/material/info/${material._id}`}
                                       className="underline text-primary-green text-xs"
                                     >
                                       Read more
@@ -112,7 +112,7 @@ const MyListMaterials = () => {
                                 </div>
 
                                 <Link
-                                  href="/dashboard/insights"
+                                  href="/report/insights"
                                   className="view-btn max-sm:text-sm"
                                 >
                                   view Insight
