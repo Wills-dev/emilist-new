@@ -100,7 +100,7 @@ const DashboardMaterialContent = () => {
                     {allMaterialsData?.map((material: any) => (
                       <div
                         key={material.Id}
-                        className="w-full grid md:grid-cols-5 grid-cols-6 gap-3 py-4 sm:px-6 hover:bg-gray-100 duration-300"
+                        className="w-full grid md:grid-cols-5 grid-cols-6 gap-3 py-4 sm:px-6 px-2 hover:bg-gray-100 duration-300"
                       >
                         <Image
                           src={material?.Images[0]}

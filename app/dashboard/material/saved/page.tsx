@@ -36,7 +36,7 @@ const SavedMaterials = () => {
       <DashboardNav />
       <section className="pt-28 padding-x pb-20">
         <div className="flex-c-b gap-4 pb-6">
-          <h1 className=" text-3xl font-bold  max-sm:text-xl pt-6">
+          <h1 className=" text-2xl font-bold  max-sm:text-lg pt-6">
             Saved Materials
           </h1>
         </div>
@@ -62,7 +62,7 @@ const SavedMaterials = () => {
                         {allUserSavedMaterialsData?.map((material: any) => (
                           <div
                             key={material._id}
-                            className="w-full grid md:grid-cols-5 grid-cols-6 gap-3 py-4 sm:px-6 hover:bg-gray-100 duration-300 shadow rounded-2xl"
+                            className="w-full grid md:grid-cols-5 grid-cols-6 gap-3 py-4 sm:px-6 px-2 hover:bg-gray-100 duration-300 shadow rounded-2xl"
                           >
                             <Image
                               src={material?.Images && material?.Images[0]}
