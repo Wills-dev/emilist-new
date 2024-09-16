@@ -1,8 +1,9 @@
-import DashboardNav from "@/components/DashboardComponents/DashboardNav";
-import ReviewSlider from "@/components/ReviewSlider/ReviewSlider";
-import StarRating from "@/components/StarRating/StarRating";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+
+import StarRating from "@/components/StarRating/StarRating";
+import ReviewSlider from "@/components/ReviewSlider/ReviewSlider";
+import DashboardNav from "@/components/DashboardComponents/DashboardNav";
 
 const MaterialInfo = ({ params }: any) => {
   return (

@@ -46,13 +46,12 @@ const ReviewSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalReviews = reviews.length;
 
-  // Auto slide every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       nextReview();
     }, 6000);
 
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval);
   }, [currentIndex]);
 
   const nextReview = () => {

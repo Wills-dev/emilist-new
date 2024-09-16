@@ -206,8 +206,8 @@ const DashboardNav = () => {
               <CgMenuRight />
             </button>
             <div className="flex-c gap-6">
-              <div className="gap-6 xl:flex items-center hidden">
-                <button>
+              <div className="gap-3 xl:flex items-center hidden">
+                <button className="p-2 hover:bg-green-100 duration-300 rounded-full">
                   <Link href="/messages">
                     <Image
                       src="/assets/icons/sms.svg"
@@ -218,8 +218,8 @@ const DashboardNav = () => {
                     />
                   </Link>
                 </button>
-                <div className="relative">
-                  <span className="block py-2">
+                <div className="relative p-2 hover:bg-green-100 duration-300 rounded-full">
+                  <span className="block">
                     {" "}
                     <Image
                       src="/assets/icons/notification.svg"
@@ -235,7 +235,7 @@ const DashboardNav = () => {
                     {openNotification && <NotificationDropdown />}
                   </AnimatePresence>
                 </div>
-                <div>
+                <div className="p-2 hover:bg-green-100 duration-300 rounded-full">
                   <Link href="/cart">
                     <Image
                       src="/assets/icons/shopping-cart.svg"

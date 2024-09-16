@@ -27,8 +27,8 @@ const MyListMaterials = () => {
     <main className="relative">
       <DashboardNav />
       <section className="pt-28 padding-x pb-20">
-        <div className="flex-c-b gap-4 pb-6">
-          <h1 className=" text-3xl font-bold  max-sm:text-xl pt-6">
+        <div className="flex-c-b gap-4 py-6">
+          <h1 className=" text-2xl font-bold  max-sm:text-lg ">
             Listed Materials
           </h1>
           <Link
@@ -59,7 +59,7 @@ const MyListMaterials = () => {
                         {allMaterialData?.map((material: any) => (
                           <div
                             key={material._id}
-                            className="w-full grid md:grid-cols-5 grid-cols-6 gap-3 py-8 sm:px-6 hover:bg-gray-100 duration-300 shadow rounded-2xl"
+                            className="w-full grid md:grid-cols-5 grid-cols-6 gap-3 py-8 sm:px-6 hover:bg-gray-100 duration-300 shadow rounded-2xl px-2"
                           >
                             <Image
                               src={material?.images[0] && material?.images[0]}
