@@ -2,22 +2,25 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import { CgMenuRight } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import { AnimatePresence } from "framer-motion";
 
+import { CartContext } from "@/utils/CartState";
+
 import JobDropdown from "./JobDropdown";
-import BackgroundTransparent from "../BackgroundTransparent/BackgroundTransparent";
-import MaterialDropdown from "./MaterialDropdown";
 import ServiceDropdown from "./ServiceDropdown";
-import NotificationDropdown from "./NotificationDropdown";
 import ProfileDropdown from "./ProfileDropdown";
 import DashboardSidebar from "./DashboardSidebar";
+import MaterialDropdown from "./MaterialDropdown";
+import NotificationDropdown from "./NotificationDropdown";
+import BackgroundTransparent from "../BackgroundTransparent/BackgroundTransparent";
 
 const DashboardNav = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { totalCartQuantity } = useContext(CartContext);
 
   const [openProfile, setOpenProfile] = useState(false);
   const [openSideBar, setOpenSideBar] = useState(false);
@@ -81,11 +84,11 @@ const DashboardNav = () => {
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
       ) {
-        setOpenJobDropdown(false);
-        // setOpenServiceDropdown(false);
         setOpenProfile(false);
-        setOpenMaterialDropdown(false);
+        setOpenJobDropdown(false);
         setOpenNotification(false);
+        setOpenServiceDropdown(false);
+        setOpenMaterialDropdown(false);
       }
     };
 
@@ -201,13 +204,13 @@ const DashboardNav = () => {
               </div>
             </div>
           </nav>
-          <div className="flex-c gap-5">
+          <div className="flex-c sm:gap-5 gap-4">
             <button className="xl:hidden block text-xl" onClick={toggle}>
               <CgMenuRight />
             </button>
-            <div className="flex-c gap-6">
-              <div className="gap-3 xl:flex items-center hidden">
-                <button className="p-2 hover:bg-green-100 duration-300 rounded-full">
+            <div className="flex-c sm:gap-6 gap-4">
+              <div className="gap-3 flex items-center ">
+                <button className="p-2 hover:bg-green-100 duration-300 rounded-full max-xl:hidden">
                   <Link href="/messages">
                     <Image
                       src="/assets/icons/sms.svg"
@@ -218,7 +221,7 @@ const DashboardNav = () => {
                     />
                   </Link>
                 </button>
-                <div className="relative p-2 hover:bg-green-100 duration-300 rounded-full">
+                <div className="relative p-2 hover:bg-green-100 duration-300 rounded-full max-xl:hidden">
                   <span className="block">
                     {" "}
                     <Image
@@ -236,7 +239,7 @@ const DashboardNav = () => {
                   </AnimatePresence>
                 </div>
                 <div className="p-2 hover:bg-green-100 duration-300 rounded-full">
-                  <Link href="/cart">
+                  <Link href="/dashboard/cart" className="relative">
                     <Image
                       src="/assets/icons/shopping-cart.svg"
                       alt="menu"
@@ -244,6 +247,11 @@ const DashboardNav = () => {
                       height={24}
                       className="object-contain w-6 h-6"
                     />
+                    {totalCartQuantity > 0 && (
+                      <span className="absolute -top-3 -right-2 px-2 py-1 bg-green-300 rounded-full text-xs">
+                        {totalCartQuantity}
+                      </span>
+                    )}
                   </Link>
                 </div>
               </div>

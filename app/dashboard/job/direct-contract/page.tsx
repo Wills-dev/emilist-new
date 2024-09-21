@@ -1,7 +1,13 @@
-import React from "react";
+import DashboardNav from "@/components/DashboardComponents/DashboardNav";
+import DirectContractForm from "@/components/JobComponent/DirectContractForm";
 
 const DirectJobContract = () => {
-  return <div>DirectJobContract</div>;
+  return (
+    <main className="relative">
+      <DashboardNav />
+      <DirectContractForm />
+    </main>
+  );
 };
 
 export default DirectJobContract;
