@@ -2,18 +2,26 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { AnimatePresence } from "framer-motion";
 
 import StarRating from "@/components/StarRating/StarRating";
 import ReviewSlider from "@/components/ReviewSlider/ReviewSlider";
 import DashboardNav from "@/components/DashboardComponents/DashboardNav";
+import ActionDropdown from "@/components/DashboardComponents/ActionDropdown";
 
 import { Capitalize, numberWithCommas } from "@/helpers";
 import { useGetMaterialInfo } from "@/hooks/useGetMaterialInfo";
 
 const MaterialInfo = ({ params }: any) => {
   const materialId = params.materialId;
+  const [showActionDropdown, setShowActionDropdown] = useState(false);
   const { loading, getMaterialInfo, materialInfo } = useGetMaterialInfo();
+
+  const toggleActionButton = () => {
+    setShowActionDropdown((prev) => !prev);
+  };
 
   useEffect(() => {
     getMaterialInfo(materialId);
@@ -44,15 +52,20 @@ const MaterialInfo = ({ params }: any) => {
                       View Insights
                     </Link>
                   </div>
-                  <button>
-                    <Image
-                      src="/assets/icons/Menu.svg"
-                      height={20}
-                      width={20}
-                      alt="menu-dot"
-                      className="object-contain h-8 w-6"
-                    />
-                  </button>
+                  <div className="relative">
+                    <button onClick={toggleActionButton}>
+                      <Image
+                        src="/assets/icons/Menu.svg"
+                        height={20}
+                        width={20}
+                        alt="menu-dot"
+                        className="object-contain h-8 w-6"
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {showActionDropdown && <ActionDropdown />}
+                    </AnimatePresence>
+                  </div>
                 </div>
                 <div className="p-6 border-y-1 border-gray-300">
                   <div className="flex justify-between gap-4 flex-wrap">
