@@ -1,27 +1,24 @@
 "use client";
 
+import { category, levels, serviceList } from "@/constants";
+import { handleKeyDown, handleWheel } from "@/helpers";
+import { useCreateDirectContract } from "@/hooks/useCreateDirectContract";
 import Image from "next/image";
 
-import { useListNewJob } from "@/hooks/useListNewJob";
-import { handleKeyDown, handleWheel } from "@/helpers";
-import { category, levels, serviceList } from "@/constants";
-
-const ListNewJobForm = () => {
+const DirectContractForm = () => {
   const {
     onSelectFile,
     handleImageDelete,
     handleChange,
     milestonesData,
-    postJobDetails,
-    setPostJobDetails,
+    createDirectContractJob,
+    setCreateDirectContractJob,
     handleSubmitPostJob,
     loading,
     selectedImages,
     setSelectedImages,
-    projectType,
-    setProjectType,
     updateMilestonesData,
-  } = useListNewJob();
+  } = useCreateDirectContract();
 
   const milestones = milestonesData?.map((milestone, index) => {
     return (
@@ -60,8 +57,8 @@ const ListNewJobForm = () => {
             </div>
           </div>
         </div>
-        <div className="w-full my-3">
-          <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
+        <div className="w-full">
+          <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
             Details of what's to be achieved
           </p>
           <div className="w-full">
@@ -75,7 +72,7 @@ const ListNewJobForm = () => {
             ></textarea>
           </div>
         </div>
-        <div className="w-full my-3">
+        <div className="w-full">
           <div className="py-2">
             <p className="text-[#5e625f] font-medium max-sm:text-sm">
               Percentage for Milestone
@@ -100,17 +97,17 @@ const ListNewJobForm = () => {
           </div>
         </div>
         <div className="w-full">
-          <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
+          <p className="text-[#5e625f] py-2 text-base font-medium max-sm:text-sm">
             Amount
           </p>
           <div className="w-full">
-            <p className=" min-w-full w-full  max-w-full rounded-lg min-h-12 px-4 bg-[#ececec] py-5 max-sm:text-sm ">
+            <p className="min-w-full w-full  max-w-full rounded-lg min-h-12 px-4 bg-[#ececec] py-5 max-sm:text-sm">
               {milestone.amount || 0}
             </p>
           </div>
         </div>
         {/* <div className="w-full">
-          <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
+          <p className="text-[#5e625f] py-2 text-base font-[500] max-sm:text-sm">
             Amount
           </p>
           <div className="w-full">
@@ -131,23 +128,40 @@ const ListNewJobForm = () => {
 
   return (
     <section className="pt-28 padding-x pb-20">
-      <h1 className=" text-3xl font-bold  max-sm:text-xl pt-6">Post a Job</h1>
+      <h1 className=" text-3xl font-bold  max-sm:text-xl pt-6">
+        Direct Contract
+      </h1>{" "}
       <form onSubmit={handleSubmitPostJob}>
         <div className="grid grid-cols-2 w-full gap-10 mt-4  ">
           <div className="col-span-1 flex flex-col gap-4 max-md:col-span-2 mr-4 max-md:mr-0">
             <div className="w-full">
               <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
+                Invite Expert
+              </p>
+              <div className="w-full">
+                <input
+                  type="text"
+                  className=" expert-reg-input"
+                  placeholder="Expert Unique ID or Email or User ID"
+                  name="invite"
+                  value={createDirectContractJob.invite}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="w-full">
+              <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
                 Select work industry
               </p>
               <div className="w-full">
-                <div className=" expert-reg-input-div">
+                <div className="expert-reg-input-div">
                   <select
                     className="bg-[#ececec] outline-none  min-w-full w-full h-full max-w-full max-sm:text-sm "
                     name="category"
-                    value={postJobDetails.category}
+                    value={createDirectContractJob.category}
                     onChange={(e) =>
-                      setPostJobDetails({
-                        ...postJobDetails,
+                      setCreateDirectContractJob({
+                        ...createDirectContractJob,
                         category: e.target.value,
                       })
                     }
@@ -168,23 +182,23 @@ const ListNewJobForm = () => {
               </div>
             </div>
             <div className="w-full">
-              <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
+              <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
                 Narrow down to a service
               </p>
               <div className="w-full">
                 <div className="expert-reg-input-div">
                   <select
                     className="bg-[#ececec] outline-none  min-w-full w-full h-full max-w-full max-sm:text-sm "
-                    name="service"
-                    value={postJobDetails.service}
+                    name="narrow"
+                    value={createDirectContractJob.narrow}
                     onChange={(e) =>
-                      setPostJobDetails({
-                        ...postJobDetails,
-                        service: e.target.value,
+                      setCreateDirectContractJob({
+                        ...createDirectContractJob,
+                        narrow: e.target.value,
                       })
                     }
                   >
-                    <option defaultValue="Bricklayer">Select service</option>
+                    <option defaultValue="">Select service</option>
                     {serviceList?.map((service, index) => (
                       <option
                         key={index}
@@ -199,7 +213,7 @@ const ListNewJobForm = () => {
               </div>
             </div>
             <div className="w-full">
-              <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
+              <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
                 Enter a title for your project
               </p>
               <div className="w-full">
@@ -208,7 +222,7 @@ const ListNewJobForm = () => {
                   className="expert-reg-input"
                   placeholder=""
                   name="projectTitle"
-                  value={postJobDetails.projectTitle}
+                  value={createDirectContractJob.projectTitle}
                   onChange={handleChange}
                 />
               </div>
@@ -219,13 +233,13 @@ const ListNewJobForm = () => {
               </p>
               <div className="w-full">
                 <textarea
-                  className=" min-w-full w-full max-w-full rounded-lg  p-2 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-1  max-sm:text-sm"
+                  className=" min-w-full w-full  max-w-full rounded-lg  p-2 bg-[#ececec] focus:outline-none focus:border-primary-green focus:border-1 max-sm:text-sm"
                   rows={8}
                   name="description"
-                  value={postJobDetails.description}
+                  value={createDirectContractJob.description}
                   onChange={(e) =>
-                    setPostJobDetails({
-                      ...postJobDetails,
+                    setCreateDirectContractJob({
+                      ...createDirectContractJob,
                       description: e.target.value,
                     })
                   }
@@ -234,7 +248,7 @@ const ListNewJobForm = () => {
             </div>
             <div className="w-full">
               <label
-                className=" flex-c gap-1 text-primary-green py-2 font-medium max-sm:text-sm cursor-pointer max-w-fit"
+                className=" flex items-center text-primary-green py-2 text-base font-[500] max-sm:text-sm cursor-pointer max-w-fit"
                 htmlFor="attach-file"
               >
                 <Image
@@ -242,7 +256,7 @@ const ListNewJobForm = () => {
                   alt="logo"
                   width={130}
                   height={30}
-                  className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5"
+                  className="object-contain w-[24px] h-[24px] max-sm:w-[16px] max-sm:h-[16px] mr-1"
                 />
                 Attach a file
               </label>
@@ -254,7 +268,7 @@ const ListNewJobForm = () => {
                 accept="image/*"
                 onChange={onSelectFile}
               />
-              <div className="flex-c gap-2 w-full flex-wrap">
+              <div className="flex items-center gap-2 w-full flex-wrap">
                 {selectedImages &&
                   selectedImages.map((image, index) => {
                     return (
@@ -290,7 +304,7 @@ const ListNewJobForm = () => {
               </div>
             </div>
             <div className="w-full">
-              <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
+              <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
                 Project duration
               </p>
               <div className="w-full grid grid-cols-3 gap-4">
@@ -299,135 +313,47 @@ const ListNewJobForm = () => {
                   onKeyDown={handleKeyDown}
                   onWheel={handleWheel}
                   className="col-span-2 expert-reg-input"
-                  placeholder="1"
+                  placeholder="3"
                   name="projectDuration"
-                  value={postJobDetails.projectDuration}
+                  value={createDirectContractJob.projectDuration}
                   onChange={handleChange}
                 />
-                <div className="col-span-1 expert-reg-input-div">
+                <div className="col-span-1  expert-reg-input-div">
                   <select
                     className="bg-[#ececec] outline-none  min-w-full w-full h-full max-w-full max-sm:text-sm "
                     name="projectDurationType"
-                    value={postJobDetails.projectDurationType}
+                    value={createDirectContractJob.projectDurationType}
                     onChange={(e) =>
-                      setPostJobDetails({
-                        ...postJobDetails,
+                      setCreateDirectContractJob({
+                        ...createDirectContractJob,
                         projectDurationType: e.target.value,
                       })
                     }
                   >
-                    <option value="day">Day</option>
-                    <option value="week">Week</option>
-                    <option value="month">Month</option>
+                    <option value="Day">Day</option>
+                    <option value="Week">Week</option>
+                    <option value="Month">Month</option>
                   </select>
                 </div>
               </div>
             </div>
-            <div className="w-full my-3">
-              <h2 className="sm:text-lg font-semibold py-5">Project type</h2>
-              <div className="w-full flex flex-col gap-3">
-                <div
-                  className={`flex-c ${
-                    projectType === "regular" ? "text-primary-green" : ""
-                  }`}
-                  onClick={() => setProjectType("regular")}
-                >
-                  <Image
-                    src={
-                      projectType === "regular"
-                        ? "/assets/icons/circle-color.svg"
-                        : "/assets/icons/circle.svg"
-                    }
-                    alt="menu"
-                    width={25}
-                    height={25}
-                    className="object-contain w-6 h-6"
-                  />
-                  <label htmlFor="Regular" className="ml-3 ">
-                    Regular
-                  </label>
-                </div>
-                <div
-                  className={`flex-c ${
-                    projectType === "biddable" ? "text-primary-green" : ""
-                  }`}
-                  onClick={() => setProjectType("biddable")}
-                >
-                  <Image
-                    src={
-                      projectType === "biddable"
-                        ? "/assets/icons/circle-color.svg"
-                        : "/assets/icons/circle.svg"
-                    }
-                    alt="menu"
-                    width={25}
-                    height={25}
-                    className="object-contain w-6 h-6"
-                  />
-                  <label htmlFor="Bidable" className="ml-3">
-                    Biddable
-                  </label>
-                </div>
+
+            <div className="w-full">
+              <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
+                Budget
+              </p>
+              <div className="w-full">
+                <input
+                  type="number"
+                  className="expert-reg-input"
+                  placeholder="₦1,000"
+                  name="budget"
+                  value={createDirectContractJob.budget}
+                  onChange={handleChange}
+                />
               </div>
             </div>
-
-            {projectType === "biddable" ? (
-              <>
-                <div className="w-full">
-                  <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
-                    Maxinum price
-                  </p>
-                  <div className="w-full">
-                    <input
-                      type="number"
-                      onKeyDown={handleKeyDown}
-                      onWheel={handleWheel}
-                      className="expert-reg-input"
-                      placeholder="25000"
-                      name="maximumPrice"
-                      value={postJobDetails.maximumPrice}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="w-full">
-                  <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
-                    Bid Range
-                  </p>
-                  <div className="w-full">
-                    <input
-                      type="text"
-                      className="expert-reg-input"
-                      placeholder="₦5,000"
-                      name="bidRange"
-                      value={postJobDetails.bidRange}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-              </>
-            ) : projectType === "regular" ? (
-              <div className="w-full">
-                <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
-                  Budget
-                </p>
-                <div className="w-full">
-                  <input
-                    type="number"
-                    onKeyDown={handleKeyDown}
-                    onWheel={handleWheel}
-                    className="expert-reg-input"
-                    placeholder="₦1,000"
-                    name="budget"
-                    value={postJobDetails.budget}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-            ) : null}
-
-            <div className="w-full my-3">
+            <div className="w-full">
               <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
                 Location
               </p>
@@ -437,54 +363,58 @@ const ListNewJobForm = () => {
                   className="expert-reg-input"
                   placeholder="Lagos, Nigeria"
                   name="location"
-                  value={postJobDetails.location}
+                  value={createDirectContractJob.location}
                   onChange={handleChange}
                 />
               </div>
             </div>
-          </div>
-          <div className="w-full my-3 col-span-1 max-md:col-span-2">
-            <h2 className="sm:text-lg font-semibold py-5">Expert Level</h2>
-            <div className="w-full flex flex-col gap-3">
-              {levels.map((level, index) => (
-                <div
-                  key={index}
-                  className={`flex-c gap-1 w-fit cursor-pointer ${
-                    postJobDetails.expertLevel === level ? "active-level" : ""
-                  }`}
-                  onClick={() =>
-                    setPostJobDetails({
-                      ...postJobDetails,
-                      expertLevel: level,
-                    })
-                  }
-                >
-                  <Image
-                    src={
-                      postJobDetails.expertLevel === level
-                        ? "/assets/icons/circle-color.svg"
-                        : "/assets/icons/circle.svg"
-                    }
-                    alt="menu"
-                    width={25}
-                    height={25}
-                    className="object-contain w-6 h-6"
-                  />
-                  <label htmlFor={level} className="ml-3  text-[#303632]">
-                    {level}
-                  </label>
-                </div>
-              ))}
-            </div>
             <div className="w-full my-3">
-              <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
+              <h2 className="sm:text-lg font-semibold py-5">Expert Level</h2>
+              <div className="w-full flex flex-col gap-3">
+                {levels.map((level, index) => (
+                  <div
+                    key={index}
+                    className={`flex items-center ${
+                      createDirectContractJob.expertLevel === level
+                        ? "active-level"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      setCreateDirectContractJob({
+                        ...createDirectContractJob,
+                        expertLevel: level,
+                      })
+                    }
+                  >
+                    <Image
+                      src={
+                        createDirectContractJob.expertLevel === level
+                          ? "/assets/icons/circle-color.svg"
+                          : "/assets/icons/circle.svg"
+                      }
+                      alt="menu"
+                      width={25}
+                      height={25}
+                      className="object-contain w-6 h-6"
+                    />
+                    <label htmlFor={level} className="ml-3">
+                      {level}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="col-span-1 flex flex-col gap-4 max-md:col-span-2 mr-4 max-md:mr-0">
+            <div className="w-full">
+              <p className="text-[#5e625f] py-2 font-medium max-sm:text-sm">
                 Milestone
               </p>
               <div className="expert-reg-input-div">
                 <select
-                  name="milestonesNumber"
                   className="bg-[#ececec] outline-none min-w-full w-full h-full max-w-full max-sm:text-sm"
-                  value={postJobDetails.milestonesNumber}
+                  name="milestonesnumber"
+                  value={createDirectContractJob.milestonesnumber}
                   onChange={handleChange}
                 >
                   <option value={1}>1</option>
@@ -495,9 +425,7 @@ const ListNewJobForm = () => {
                 </select>
               </div>
             </div>
-            {/* </div> */}
-            {/* <> {milestones}</> */}
-            <div className="flex flex-col  max-h-[70rem] overflow-y-auto mt-8">
+            <div className="flex flex-col max-h-[70rem] overflow-y-auto mt-8">
               {milestones}
             </div>
           </div>
@@ -519,4 +447,4 @@ const ListNewJobForm = () => {
   );
 };
 
-export default ListNewJobForm;
+export default DirectContractForm;

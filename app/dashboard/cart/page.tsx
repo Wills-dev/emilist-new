@@ -1,6 +1,8 @@
-import DashboardNav from "@/components/DashboardComponents/DashboardNav";
 import Image from "next/image";
+
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
+
+import DashboardNav from "@/components/DashboardComponents/DashboardNav";
 
 const Cart = () => {
   return (

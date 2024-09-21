@@ -15,10 +15,12 @@ import { Capitalize, numberWithCommas } from "@/helpers";
 import { useSaveMaterials } from "@/hooks/useSaveMaterials";
 import { useUnsaveMaterial } from "@/hooks/useUnsaveMaterial";
 import { useFetchMaterials } from "@/hooks/useFetchMaterials";
+import { useAddMaterialToCart } from "@/hooks/useAddMaterialToCart";
 import { useGetUserSavedMaterials } from "@/hooks/useGetUserSavedMaterials";
 
 const DashboardMaterialContent = () => {
   const { handleSaveMaterial, rerender } = useSaveMaterials();
+  const { addMaterialToCart, cartLoading } = useAddMaterialToCart();
   const { allUserSavedMaterials, getAllUserSavedMaterials } =
     useGetUserSavedMaterials();
   const { handleUnsaveMaterial, unsaveRerenderr } = useUnsaveMaterial();
@@ -44,6 +46,9 @@ const DashboardMaterialContent = () => {
 
   return (
     <div className="col-span-7 max-lg:col-span-10 w-full bg-white p-6 rounded-lg max-sm:px-3">
+      {cartLoading && (
+        <div className="absolute top-0 left-0 w-full min-h-screen bg-white h-full z-50 opacity-40" />
+      )}
       <div className="flex justify-between items-center">
         <h2 className="capitalize text-2xl font-medium max-sm:text-lg">
           Explore Emilist
@@ -168,7 +173,10 @@ const DashboardMaterialContent = () => {
                               </p>
                             </div>
 
-                            <button className="view-btn max-sm:text-sm">
+                            <button
+                              className="view-btn max-sm:text-sm"
+                              onClick={() => addMaterialToCart(material.Id)}
+                            >
                               Add to Cart
                             </button>
                           </div>
