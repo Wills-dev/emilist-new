@@ -12,15 +12,29 @@ import DashboardNav from "@/components/DashboardComponents/DashboardNav";
 import ActionDropdown from "@/components/DashboardComponents/ActionDropdown";
 
 import { Capitalize, numberWithCommas } from "@/helpers";
+import { useDeleteMaterial } from "@/hooks/useDeleteMaterial";
 import { useGetMaterialInfo } from "@/hooks/useGetMaterialInfo";
+import ConfirmAction from "@/components/DashboardComponents/ConfirmAction";
 
 const MaterialInfo = ({ params }: any) => {
   const materialId = params.materialId;
+
   const [showActionDropdown, setShowActionDropdown] = useState(false);
+  const [openConfirmActionModal, setOpenConfirmActionModal] = useState(false);
+  const { handleDeleteMaterial, isDeleteLoading } = useDeleteMaterial();
   const { loading, getMaterialInfo, materialInfo } = useGetMaterialInfo();
 
   const toggleActionButton = () => {
     setShowActionDropdown((prev) => !prev);
+  };
+
+  const toggleConfirmActionModal = () => {
+    setOpenConfirmActionModal((prev) => !prev);
+    setShowActionDropdown(false);
+  };
+
+  const confrimDeleteMaterial = () => {
+    handleDeleteMaterial(materialId);
   };
 
   useEffect(() => {
@@ -29,6 +43,17 @@ const MaterialInfo = ({ params }: any) => {
 
   return (
     <main className="relative">
+      {/* confirm if you want to delete material */}
+      <AnimatePresence>
+        {openConfirmActionModal && (
+          <ConfirmAction
+            closeActionModal={toggleConfirmActionModal}
+            confirmAction={confrimDeleteMaterial}
+            loading={isDeleteLoading}
+            text="Are you sure you want to delete this material?"
+          />
+        )}
+      </AnimatePresence>
       <DashboardNav />
       <section className="sm:pt-28 pt-20 bg-[#F0FDF5] w-full padding-x min-h-screen pb-10">
         <div className="w-full h-ful flex gap-4 max-lg:flex-col py-10 max-sm:pt-4">
@@ -63,7 +88,12 @@ const MaterialInfo = ({ params }: any) => {
                       />
                     </button>
                     <AnimatePresence>
-                      {showActionDropdown && <ActionDropdown />}
+                      {showActionDropdown && (
+                        <ActionDropdown
+                          confirmDelete={toggleConfirmActionModal}
+                          link={`/dashboard/material/edit/${materialId}`}
+                        />
+                      )}
                     </AnimatePresence>
                   </div>
                 </div>

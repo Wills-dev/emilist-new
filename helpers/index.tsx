@@ -130,3 +130,7 @@ export const handleWheel = (event: React.WheelEvent<HTMLInputElement>) => {
 export const showLastPathOfLink = (link: string) => {
   return link.split("/").filter(Boolean).pop();
 };
+
+export const handleGoBack = () => {
+  window.history.back();
+};
