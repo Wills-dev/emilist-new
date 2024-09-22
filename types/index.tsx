@@ -65,3 +65,13 @@ export interface MaterialDetailType {
   supplier: string;
   location: string;
 }
+
+export interface EditMaterialInfoType {
+  productName: string;
+  brand: string;
+  description: string;
+  quantityAvailable: string | number;
+  price: string | number;
+  supplier: string;
+  location: string;
+}
