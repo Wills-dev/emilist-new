@@ -3094,3 +3094,30 @@ export const buildingMaterials = [
     subCategory: ["Oil-Based Paint", "Water-Based Paint", "Acrylic Paint"],
   },
 ];
+
+export const JobLinks = [
+  { id: 1, name: "lead", link: "/dashboard/job/lead" },
+  { id: 2, name: "new", link: "/dashboard/job/new" },
+
+  {
+    id: 3,
+    name: "active jobs",
+    link: "/dashboard/job/active",
+  },
+
+  {
+    id: 4,
+    name: "overdue jobs",
+    link: "/dashboard/job/overdue",
+  },
+  {
+    id: 5,
+    name: "paused jobs",
+    link: "/dashboard/job/paused",
+  },
+  {
+    id: 6,
+    name: "completed jobs",
+    link: "/dashboard/job/completed",
+  },
+];

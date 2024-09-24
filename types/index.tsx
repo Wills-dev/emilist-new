@@ -75,3 +75,9 @@ export interface EditMaterialInfoType {
   supplier: string;
   location: string;
 }
+
+export interface ToggleLinkType {
+  id: number;
+  name: string;
+  link: string;
+}
