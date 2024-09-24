@@ -15,3 +15,11 @@ export const dashboardMsgProfiles = [
     lastName: "Kanen",
   },
 ];
+
+export const expertise = [
+  "Web-view app/apps that need backends",
+  "Picture gallery app, Social Media app",
+  "Payment integration",
+  "Map based tracking, GPS, Core data",
+  "Calendar based app",
+];

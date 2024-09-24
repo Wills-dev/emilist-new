@@ -1,5 +1,5 @@
-import DashboardJobContent from "@/components/DashboardComponents/DashboardJobContent";
 import DashboardLayout from "@/components/DashboardComponents/DashboardLayout";
+import DashboardJobContent from "@/components/DashboardComponents/DashboardJobContent";
 
 const Job = () => {
   return (

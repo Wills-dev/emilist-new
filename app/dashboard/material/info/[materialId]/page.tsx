@@ -9,12 +9,12 @@ import { AnimatePresence } from "framer-motion";
 import StarRating from "@/components/StarRating/StarRating";
 import ReviewSlider from "@/components/ReviewSlider/ReviewSlider";
 import DashboardNav from "@/components/DashboardComponents/DashboardNav";
+import ConfirmAction from "@/components/DashboardComponents/ConfirmAction";
 import ActionDropdown from "@/components/DashboardComponents/ActionDropdown";
 
 import { Capitalize, numberWithCommas } from "@/helpers";
 import { useDeleteMaterial } from "@/hooks/useDeleteMaterial";
 import { useGetMaterialInfo } from "@/hooks/useGetMaterialInfo";
-import ConfirmAction from "@/components/DashboardComponents/ConfirmAction";
 
 const MaterialInfo = ({ params }: any) => {
   const materialId = params.materialId;
@@ -131,6 +131,7 @@ const MaterialInfo = ({ params }: any) => {
                           Price:
                         </p>
                         <p className="max-sm:text-sm">
+                          ₦{" "}
                           {materialInfo?.price &&
                             numberWithCommas(materialInfo?.price)}
                         </p>
@@ -192,11 +193,11 @@ const MaterialInfo = ({ params }: any) => {
               </div>
             </div>
             <div className="p-6">
-              <div className="flex-c-b gap-6">
-                <h6 className="text-2xl font-semibold">Reviews</h6>
+              <div className="flex-c-b gap-6 max-w-[676px] w-full">
+                <h6 className="sm:text-2xl text-lg font-semibold">Reviews</h6>
                 <Link
-                  href={`/dashboard/material/info/all-reviews/${2}`}
-                  className="text-primary-green sm:text-sm text-xs"
+                  href={`/material/info/all-reviews/${2}`}
+                  className="text-primary-green sm:text-sm text-xs hover:text-green-600 duration-300 transition-all"
                 >
                   See all reviews
                 </Link>
