@@ -36,8 +36,10 @@ const DashboardMaterialContent = () => {
     getAllMaterials,
   } = useFetchMaterials();
 
-  const isSaved = (job: any) =>
-    allUserSavedMaterials?.some((savedJob: any) => savedJob.id === job.Id);
+  const isSaved = (material: any) =>
+    allUserSavedMaterials?.some(
+      (savedMaterial: any) => savedMaterial.id === material.Id
+    );
 
   useEffect(() => {
     getAllMaterials();
