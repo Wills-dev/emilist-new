@@ -134,3 +134,51 @@ export const showLastPathOfLink = (link: string) => {
 export const handleGoBack = () => {
   window.history.back();
 };
+
+export const countCompleteMilestones = (milestoneDetails: any): string => {
+  const totalMilestones = milestoneDetails.length;
+  const completedMilestones = milestoneDetails.filter(
+    (milestone: any) => milestone.milestoneStatus === "completed"
+  ).length;
+  return `${completedMilestones}/${totalMilestones}`;
+};
+
+export const formatStartDate = (date: Date): string => {
+  return format(date, "dd/MM/yyyy");
+};
+
+export const formatDueDate = (date: any): string => {
+  const dueDate = date;
+  const now = new Date();
+
+  const hoursDiff = differenceInHours(dueDate, now);
+  const daysDiff = differenceInDays(dueDate, now);
+  const monthsDiff = differenceInMonths(dueDate, now);
+  const weeksDiff = differenceInWeeks(dueDate, now);
+
+  if (hoursDiff < 24) {
+    return `${hoursDiff} ${hoursDiff === 1 ? "hr" : "hrs"}`;
+  } else if (daysDiff <= 7) {
+    return `${daysDiff} ${daysDiff === 1 ? "day" : "days"}`;
+  } else if (weeksDiff <= 4) {
+    return `${weeksDiff} ${weeksDiff === 1 ? "week" : "weeks"}`;
+  } else return `${monthsDiff} ${monthsDiff === 1 ? "month" : "months"}`;
+};
+
+export const formatOverDueDate = (date: any): string => {
+  const dueDate = date;
+  const now = new Date();
+
+  const hoursDiff = differenceInHours(now, dueDate);
+  const daysDiff = differenceInDays(now, dueDate);
+  const monthsDiff = differenceInMonths(now, dueDate);
+  const weeksDiff = differenceInWeeks(now, dueDate);
+
+  if (hoursDiff < 24) {
+    return `${hoursDiff} ${hoursDiff === 1 ? "hr" : "hrs"}`;
+  } else if (daysDiff <= 7) {
+    return `${daysDiff} ${daysDiff === 1 ? "day" : "days"}`;
+  } else if (weeksDiff <= 4) {
+    return `${weeksDiff} ${weeksDiff === 1 ? "week" : "weeks"}`;
+  } else return `${monthsDiff} ${monthsDiff === 1 ? "month" : "months"}`;
+};

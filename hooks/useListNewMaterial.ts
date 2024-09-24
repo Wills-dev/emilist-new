@@ -103,6 +103,10 @@ export const useListNewMaterial = () => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+    if (!currentUser) {
+      router.push("/login");
+      return;
+    }
     const {
       product_name,
       brand,
