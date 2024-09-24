@@ -174,3 +174,32 @@ input[type="number"] {
   border: 1px solid #25c269 !important;
   color: #25c269 !important;
 }
+
+/* share referral code modal */
+.share-referral {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px !important;
+}
+
+.share-referral .react-share__ShareButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.share-referral button {
+  background-color: transparent;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.share-referral svg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}

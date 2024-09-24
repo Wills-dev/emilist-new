@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
@@ -20,9 +20,13 @@ import { useUnsaveMaterial } from "@/hooks/useUnsaveMaterial";
 import { useGetMaterialInfo } from "@/hooks/useGetMaterialInfo";
 import { useAddMaterialToCart } from "@/hooks/useAddMaterialToCart";
 import { useGetUserSavedMaterials } from "@/hooks/useGetUserSavedMaterials";
+import ShareLink from "@/components/modals/ShareLink";
 
 const page = ({ params }: any) => {
   const materialId = params.materialId;
+
+  const [link, setLink] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const { handleSaveMaterial, rerender } = useSaveMaterials();
   const { addMaterialToCart, cartLoading } = useAddMaterialToCart();
@@ -41,18 +45,35 @@ const page = ({ params }: any) => {
     getAllUserSavedMaterials();
   }, [materialId, rerender, unsaveRerenderr]);
 
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleOpen = (url: string) => {
+    setIsModalOpen(true);
+    setLink(url);
+  };
+
   return (
     <MainLayout>
       <div className="gap-8 pt-28 pb-4 padding-x">
         {cartLoading && (
           <div className="absolute top-0 left-0 w-full min-h-screen bg-white h-full z-50 opacity-40" />
         )}
+
         {loading ? (
           <div className="flex item-center justify-center text-green-500 mt-6 h-[70vh]">
             <span className="loading loading-bars loading-lg"></span>
           </div>
         ) : (
           <div className="w-full pt-12">
+            <ShareLink
+              handleCancel={handleCancel}
+              isModalOpen={isModalOpen}
+              link={link}
+              textToCopy={`https://emilist.com/material/info/${materialId}`}
+              title="Share material"
+            />
             <div className="flex-c sm:gap-8 gap-5 justify-end pb-5">
               {isSaved() ? (
                 <span
@@ -82,6 +103,9 @@ const page = ({ params }: any) => {
                 width={20}
                 height={20}
                 className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer"
+                onClick={() =>
+                  handleOpen("Check out this material on Emilist!")
+                }
               />
             </div>
             <section className="grid grid-cols-5 gap-5 max-lg:grid-cols-4">
