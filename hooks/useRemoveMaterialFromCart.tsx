@@ -8,42 +8,44 @@ import { CartContext } from "@/utils/CartState";
 import { axiosInstance } from "@/axiosInstance/baseUrl";
 import { promiseErrorFunction, toastOptions } from "@/helpers";
 
-export const useAddMaterialToCart = () => {
+interface CartPayloadType {
+  material_id: string;
+  user_id: string;
+}
+
+export const useRemoveMaterialFromCart = () => {
   const router = useRouter();
 
   const { currentUser } = useContext(AuthContext);
   const { setCartRerender } = useContext(CartContext);
-  const [cartLoading, setCartLoading] = useState(false);
+  const [deleteCartLoading, setDeleteCartLoading] = useState(false);
 
-  const addMaterialToCart = async (materialId: string) => {
-    setCartLoading(true);
+  const deleteMaterialFromCart = async (materialId: string) => {
+    setDeleteCartLoading(true);
     if (!currentUser) {
       router.push("/login");
     }
     try {
-      const cartPayload = {
-        quantity: 1,
+      const deleteCartPayload: CartPayloadType = {
         material_id: materialId,
         user_id: currentUser.unique_id,
       };
-      await axiosInstance.post(`/addToCart`, cartPayload, {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+      await axiosInstance.delete(`/deleteCart`, {
+        data: deleteCartPayload,
       });
 
-      toast.success("Material added to cart", toastOptions);
+      toast.success("Material deleted from cart", toastOptions);
       setCartRerender((prev: boolean) => !prev);
     } catch (error: any) {
-      console.log("error on add to cart", error);
+      console.log("error removing material from cart", error);
       promiseErrorFunction(error);
     } finally {
-      setCartLoading(false);
+      setDeleteCartLoading(false);
     }
   };
 
   return {
-    addMaterialToCart,
-    cartLoading,
+    deleteMaterialFromCart,
+    deleteCartLoading,
   };
 };

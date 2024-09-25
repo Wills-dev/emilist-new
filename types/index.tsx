@@ -81,3 +81,11 @@ export interface ToggleLinkType {
   name: string;
   link: string;
 }
+
+export type CartItemType = {
+  materialId: string;
+  materialName: string;
+  price: number;
+  quantity: number;
+  totalPrice: number;
+};
