@@ -64,7 +64,7 @@ const ProfileDropdown = ({ handleOpen }: Props) => {
                 Subscriptions
               </li>
             </Link>
-            <Link href="/dashboard/reports/earnings" onClick={handleOpen}>
+            <Link href="/dashboard/report/earnings" onClick={handleOpen}>
               <li className="hover:text-primary-green font-medium max-sm:text-sm">
                 Reports
               </li>
