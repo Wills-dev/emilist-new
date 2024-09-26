@@ -115,8 +115,9 @@ const Cart = () => {
               <p className="max-sm:text-sm font-bold">
                 {" "}
                 ₦
-                {cartItems?.grandTotal &&
-                  numberWithCommas(cartItems?.grandTotal)}
+                {cartItems?.grandTotal
+                  ? numberWithCommas(cartItems?.grandTotal)
+                  : "0:00"}
               </p>
             </div>
           </div>
@@ -188,8 +189,9 @@ const Cart = () => {
               <p className="max-sm:text-sm font-bold">
                 {" "}
                 ₦
-                {cartItems?.grandTotal &&
-                  numberWithCommas(cartItems?.grandTotal)}
+                {cartItems?.grandTotal
+                  ? numberWithCommas(cartItems?.grandTotal)
+                  : "0:00"}
               </p>
             </div>
           </div>

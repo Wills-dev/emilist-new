@@ -31,6 +31,9 @@ export const useRemoveMaterialFromCart = () => {
         user_id: currentUser.unique_id,
       };
       await axiosInstance.delete(`/deleteCart`, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
         data: deleteCartPayload,
       });
 
