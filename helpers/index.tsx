@@ -77,6 +77,12 @@ export const goBack = () => {
   window.history.back();
 };
 
+export const convertDateFormat = (oldDate: Date): string => {
+  let date = new Date(oldDate).toString().split(" ");
+  let newFormat = ` ${date[2]}  ${date[1]}, ${date[3]}`;
+  return newFormat;
+};
+
 export const formatCreatedAt = (date: Date): string => {
   const createdAt = date;
   const now = new Date();

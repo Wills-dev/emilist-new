@@ -140,7 +140,7 @@ const DashboardSidebar = ({
                           key={service?.id}
                         >
                           <Link
-                            href={`/expert/info/${service?.id}`}
+                            href={`/dashboard/service/info/${service?.id}`}
                             onClick={handleServiceDropDown}
                           >
                             {service?.service}
