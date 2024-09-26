@@ -23,3 +23,20 @@ export const expertise = [
   "Map based tracking, GPS, Core data",
   "Calendar based app",
 ];
+
+export const certificatesDetails = [
+  {
+    certificateURL: "/assets/images/privateExpertImg1.png",
+    issuingOrg: "Painters Association of Nigeria",
+    verificationNumber: "1234567890",
+    issuingDate: "12/01/2009",
+    expiringDate: "none",
+  },
+  {
+    certificateURL: "/assets/images/privateExpertImg.png",
+    issuingOrg: "Painters Leaders of Nigeria",
+    verificationNumber: "1234567890",
+    issuingDate: "12/01/2009",
+    expiringDate: "none",
+  },
+];

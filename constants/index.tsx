@@ -3121,3 +3121,22 @@ export const JobLinks = [
     link: "/dashboard/job/completed",
   },
 ];
+
+export const reportLinks = [
+  {
+    id: 1,
+    name: "Jobs",
+    link: "/dashboard/report",
+  },
+  {
+    id: 2,
+    name: "Earning",
+    link: "/dashboard/report/earnings",
+  },
+
+  {
+    id: 3,
+    name: "Projects",
+    link: "/dashboard/report/projects",
+  },
+];
