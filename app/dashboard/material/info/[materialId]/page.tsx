@@ -72,7 +72,7 @@ const MaterialInfo = ({ params }: any) => {
                     </h1>
                     <Link
                       href={`/dashboard/report/insights`}
-                      className="max-sm:text-sm font-semibold text-primary-green"
+                      className="max-sm:text-sm font-semibold text-primary-green p"
                     >
                       View Insights
                     </Link>
