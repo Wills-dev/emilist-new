@@ -71,7 +71,7 @@ const MaterialInfo = ({ params }: any) => {
                         Capitalize(materialInfo?.productName)}
                     </h1>
                     <Link
-                      href={`/report/insights/2`}
+                      href={`/dashboard/report/insights`}
                       className="max-sm:text-sm font-semibold text-primary-green"
                     >
                       View Insights
