@@ -35,7 +35,7 @@ export const useLogin = () => {
       createAuthCookie("emilistUser", data?.data?.user);
       setCurrentUser(data?.data?.user);
       toast.success("Login successful!", toastOptions);
-      router.push("/dashboard/jobs");
+      router.push("/dashboard/job");
       setEmail("");
       setPassword("");
     } catch (error: any) {

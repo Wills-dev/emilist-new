@@ -195,7 +195,7 @@ const ListNewMaterialForm = () => {
 
             <div className="w-full">
               <p className="text-[#5e625f] py-2  font-medium max-sm:text-sm">
-                Price
+                Unit price
               </p>
               <div className="w-full">
                 <input

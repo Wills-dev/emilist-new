@@ -3139,4 +3139,14 @@ export const reportLinks = [
     name: "Projects",
     link: "/dashboard/report/projects",
   },
+  {
+    id: 4,
+    name: "Insights",
+    link: "/dashboard/report/insights",
+  },
+  {
+    id: 3,
+    name: "Target",
+    link: "/dashboard/service/target",
+  },
 ];

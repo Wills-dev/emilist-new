@@ -43,7 +43,7 @@ const ReportHeader = ({ currentLink }: Props) => {
               />
             </div>
             {open && (
-              <ul className="absolute flex flex-col -bottom-[8.8rem] left-0  max-sm:w-full bg-white shadow-md justify-center p-4 rounded-md w-full gap-4">
+              <ul className="absolute flex flex-col top-full left-0  max-sm:w-full bg-white shadow-md justify-center p-4 rounded-md w-full gap-4">
                 {reportLinks.map((link, index) => (
                   <Link
                     href={link.link}
