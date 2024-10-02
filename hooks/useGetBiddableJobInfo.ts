@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+import toast from "react-hot-toast";
+
+import { toastOptions } from "@/helpers";
 import { axiosInstance } from "@/axiosInstance/baseUrl";
 
 export const useGetBiddableJobInfo = () => {
@@ -14,6 +17,7 @@ export const useGetBiddableJobInfo = () => {
       setCurrentMilestone(data?.data?.milestoneDetails[0]);
     } catch (error: any) {
       console.log("error getting biddable jobs", error);
+      toast.error("Network error", toastOptions);
     } finally {
       setLoading(false);
     }
