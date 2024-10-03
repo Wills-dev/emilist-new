@@ -7,7 +7,7 @@ const JobHomeData = dynamic(() => import("../HomeComponents/JobHomeData"), {
 
 const PopularJobs = () => {
   return (
-    <section className="padding-y no-scroll">
+    <section className="padding-y ">
       <div className=" padding-l">
         <h2 className="text-3xl text-gray-900 font-bold max-md:text-xl ">
           Find jobs around you

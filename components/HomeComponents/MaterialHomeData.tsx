@@ -17,7 +17,7 @@ const MaterialHomeData = () => {
       {loading ? (
         <PopularSection />
       ) : (
-        <div className="flex items-center w-full overflow-x-scroll gap-4 sm:mt-6 py-4">
+        <div className="flex items-center w-full overflow-x-scroll gap-4 sm:mt-6 py-4 hide-scrollbar">
           {allMaterials?.map((material: any) => (
             <div className="flex flex-col gap-4" key={material?.Id}>
               <Link
