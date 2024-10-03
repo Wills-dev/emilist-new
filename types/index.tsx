@@ -89,3 +89,10 @@ export type CartItemType = {
   quantity: number;
   totalPrice: number;
 };
+
+export type QuoteModalProps = {
+  isOpen: boolean;
+  onCancel: () => void;
+  jobInfo: any;
+  getJobInfo: any;
+};

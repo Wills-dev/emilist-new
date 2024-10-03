@@ -116,18 +116,18 @@ const MyListedJobs = () => {
                               title="Share job"
                               textToCopy={
                                 job?.jobType === "biddable"
-                                  ? `https://emilist.com/dashbaord/job/info/biddable/${job._id}`
+                                  ? `https://emilist.com/dashboard/job/info/biddable/${job._id}`
                                   : job?.jobType === "regular"
-                                  ? `https://emilist.com/dashbaord/job/info/regular/${job._id}`
-                                  : `https://emilist.com/dashbaord/job/info/direct-job/${job._id}`
+                                  ? `https://emilist.com/dashboard/job/info/regular/${job._id}`
+                                  : `https://emilist.com/dashboard/job/info/direct-job/${job._id}`
                               }
                             />
                             <Link
                               href={
                                 job?.jobType === "biddable"
-                                  ? `/dashbaord/job/info/biddable/${job._id}`
+                                  ? `/dashboard/job/info/biddable/${job._id}`
                                   : job?.jobType === "regular"
-                                  ? `/dashbaord/job/info/regular/${job._id}`
+                                  ? `/dashboard/job/info/regular/${job._id}`
                                   : `/dashboard/job/info/direct-job/${job._id}`
                               }
                               className="w-full"
