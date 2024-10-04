@@ -37,9 +37,9 @@ const CompletedJobs = () => {
         <div className="grid grid-cols-3 gap-5 mt-10">
           {allJobs.length < 1 ? (
             <div className="">
-              <h6 className="sm:text-xl"> No paused job</h6>
+              <h6 className="sm:text-xl"> No completed job</h6>
               <p className="max-sm:text-sm">
-                Keep track of all paused jobs here.
+                Keep track of all completed jobs here.
               </p>
             </div>
           ) : (
