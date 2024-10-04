@@ -138,7 +138,6 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
       <LoadingOverlay loading={requestLoading} />
       <LoadingOverlay loading={loadingAccept} />
       <LoadingOverlay loading={isWithdrawLoading} />
-      <LoadingOverlay loading={isDeleteLoading} />
       <LoadingOverlay loading={loadingRemove} />
       <LoadingOverlay loading={loadingAcceptQuote} />
 

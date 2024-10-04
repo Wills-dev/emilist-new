@@ -119,7 +119,7 @@ const MyListedJobs = () => {
                                   ? `https://emilist.com/dashboard/job/info/biddable/${job._id}`
                                   : job?.jobType === "regular"
                                   ? `https://emilist.com/dashboard/job/info/regular/${job._id}`
-                                  : `https://emilist.com/dashboard/job/info/direct-job/${job._id}`
+                                  : `https://emilist.com/dashboard/job/info/direct/${job._id}`
                               }
                             />
                             <Link
@@ -128,7 +128,7 @@ const MyListedJobs = () => {
                                   ? `/dashboard/job/info/biddable/${job._id}`
                                   : job?.jobType === "regular"
                                   ? `/dashboard/job/info/regular/${job._id}`
-                                  : `/dashboard/job/info/direct-job/${job._id}`
+                                  : `/dashboard/job/info/direct/${job._id}`
                               }
                               className="w-full"
                             >
