@@ -17,7 +17,7 @@ const JobHomeData = () => {
       {isLoading ? (
         <PopularSection />
       ) : (
-        <div className="flex items-center w-full overflow-x-scroll gap-4 sm:mt-6 py-4">
+        <div className="flex items-center w-full overflow-x-scroll gap-4 sm:mt-6 py-4 hide-scrollbar">
           {allJobs?.map((job: any) => (
             <div className="flex flex-col gap-4" key={job?.Id}>
               <Link

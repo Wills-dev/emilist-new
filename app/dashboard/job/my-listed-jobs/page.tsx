@@ -116,18 +116,18 @@ const MyListedJobs = () => {
                               title="Share job"
                               textToCopy={
                                 job?.jobType === "biddable"
-                                  ? `https://emilist.com/dashbaord/job/info/biddable/${job._id}`
+                                  ? `https://emilist.com/dashboard/job/info/biddable/${job._id}`
                                   : job?.jobType === "regular"
-                                  ? `https://emilist.com/dashbaord/job/info/regular/${job._id}`
-                                  : `https://emilist.com/dashbaord/job/info/direct-job/${job._id}`
+                                  ? `https://emilist.com/dashboard/job/info/regular/${job._id}`
+                                  : `https://emilist.com/dashboard/job/info/direct-job/${job._id}`
                               }
                             />
                             <Link
                               href={
                                 job?.jobType === "biddable"
-                                  ? `/dashbaord/job/info/biddable/${job._id}`
+                                  ? `/dashboard/job/info/biddable/${job._id}`
                                   : job?.jobType === "regular"
-                                  ? `/dashbaord/job/info/regular/${job._id}`
+                                  ? `/dashboard/job/info/regular/${job._id}`
                                   : `/dashboard/job/info/direct-job/${job._id}`
                               }
                               className="w-full"
@@ -264,13 +264,6 @@ const MyListedJobs = () => {
                 </div>
               </form>
               <div className="flex flex-col gap-4 my-4 ">
-                <label
-                  htmlFor="filter"
-                  className="flex-c text-sm text-[#474c48] max-md:text-xs"
-                >
-                  Filter
-                </label>
-
                 <h6 className="text-lg font-semibold pt-4  max-sm:text-sm ">
                   Job title
                 </h6>

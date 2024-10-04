@@ -113,8 +113,8 @@ const DashboardJobContent = () => {
                             <Link
                               href={
                                 job?.jobType === "biddable"
-                                  ? `/job/info/biddable/${job.Id}`
-                                  : `/job/info/regular/${job.Id}`
+                                  ? `/dashboard/job/info/biddable/${job.Id}`
+                                  : `/dashboard/job/info/regular/${job.Id}`
                               }
                             >
                               {job?.jobTitle && Capitalize(job?.jobTitle)}
