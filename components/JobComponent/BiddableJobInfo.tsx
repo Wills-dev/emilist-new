@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
+import { AnimatePresence } from "framer-motion";
+
 import { AuthContext } from "@/utils/AuthState";
 import { useSaveJob } from "@/hooks/useSaveJob";
 import { useUnsaveJob } from "@/hooks/useUnSaveJob";
@@ -19,8 +21,14 @@ import { Capitalize, formatCreatedAt, numberWithCommas } from "@/helpers";
 import { useAcceptBiddableApplicant } from "@/hooks/useAcceptBiddableApplicant";
 
 import AddQoute from "./AddQoute";
-import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
+import Applicants from "./Applicants";
+import AboutJobOwner from "./AboutJobOwner";
+import ChatModal from "../modals/ChatModal";
 import PromoteModal from "../modals/PromoteModal";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
+import ConfirmAction from "../DashboardComponents/ConfirmAction";
+import ApplyBiddableJobModal from "../modals/ApplyBiddableJobModal";
+import ActionDropdown from "../DashboardComponents/ActionDropdown";
 
 interface BiddableJobInfoProps {
   jobId: string;
@@ -31,8 +39,9 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
 
   const [openChat, setOpenChat] = useState(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [openActionDropdown, setOpenActionDropdown] = useState(false);
+  const [showActionDropdown, setShowActionDropdown] = useState(false);
   const [isPromoModalOpen, setIsPromoModalOpen] = useState<boolean>(false);
+  const [openConfirmActionModal, setOpenConfirmActionModal] = useState(false);
 
   const { handleSaveJob, rerender } = useSaveJob();
   const { handleUnsaveJob, unsaveRerenderr } = useUnsaveJob();
@@ -68,6 +77,19 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
     applyRerender,
     handleBlur,
   } = useApplyForBiddableJob();
+
+  const toggleActionButton = () => {
+    setShowActionDropdown((prev) => !prev);
+  };
+
+  const toggleConfirmActionModal = () => {
+    setOpenConfirmActionModal((prev) => !prev);
+    setShowActionDropdown(false);
+  };
+
+  const confirmDeleteJob = () => {
+    handleDeleteJob(jobId);
+  };
 
   const showQuoteComponent = jobInfo?.applicants?.some((applicant: any) => {
     if (
@@ -120,8 +142,20 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
       <LoadingOverlay loading={loadingRemove} />
       <LoadingOverlay loading={loadingAcceptQuote} />
 
+      {/* confirm if you want to delete material */}
+      <AnimatePresence>
+        {openConfirmActionModal && (
+          <ConfirmAction
+            closeActionModal={toggleConfirmActionModal}
+            confirmAction={confirmDeleteJob}
+            loading={isDeleteLoading}
+            text="Are you sure you want to delete this job?"
+          />
+        )}
+      </AnimatePresence>
+
       {loading || saveLoading ? (
-        <div className="flex w-full min-h-[70vh] item-center justify-center text-green-500 mt-6">
+        <div className="flex-c w-full min-h-[70vh] justify-center text-green-500 mt-6">
           <span className="loading loading-bars loading-lg"></span>
         </div>
       ) : (
@@ -137,10 +171,10 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
               openModal={openModal}
               setOpenModal={setOpenModal}
             />
-            <div className="col-span-9 max-lg:col-span-12 flelx flex-col w-full bg-white rounded-[10px] py-10  max-h-fit">
-              <div className="w-full border-b-[1px] border-[#B8B9B8] px-10 max-sm:px-5">
-                <div className="flex items-center justify-between">
-                  <h5 className="text-[#000000] text-[30px] leading-[36px] font-[600] max-sm:text-[20px] pb-3">
+            <div className="col-span-9 max-lg:col-span-12 flelx flex-col w-full bg-white rounded-lg py-10  max-h-fit">
+              <div className="w-full border-b-1 border-[#B8B9B8] px-10 max-sm:px-5">
+                <div className="flex-c-b">
+                  <h5 className="text-3xl font-semibold max-sm:text-lg pb-3">
                     {jobInfo?.jobTitle && Capitalize(jobInfo.jobTitle)}
                   </h5>
                   {jobInfo?.jobStatus === "pending" ||
@@ -149,41 +183,24 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
                       {currentUser.unique_id ===
                         jobInfo?.userDetails?.userId && (
                         <div className="block relative">
-                          <Image
-                            src="/assets/icons/menudot.svg"
-                            alt="menu"
-                            width={30}
-                            height={30}
-                            className="object-contain w-[30px] h-[30px] max-sm:w-[18px] max-sm:h-[18px] max-sm:hidden cursor-pointer"
-                            onClick={() =>
-                              setOpenActionDropdown((prev) => !prev)
-                            }
-                          />
+                          <button onClick={toggleActionButton}>
+                            <Image
+                              src="/assets/icons/Menu.svg"
+                              height={20}
+                              width={20}
+                              alt="menu-dot"
+                              className="object-contain h-8 w-6"
+                            />
+                          </button>
                           {/* the action dropdown */}
-
-                          {openActionDropdown && (
-                            <div className="absolute shadow-md rounded-[10px] bg-white flex flex-col gap-3 px-6 max-sm:px-3 py-6 items-start right-0 text-[#282828] text-[16px] max-sm:text-[13px] ">
-                              <Link
-                                href={`/dashboard/job/edit/biddable/${jobId}`}
-                                className=" whitespace-nowrap hover:text-primary-green transition-all w-full"
-                              >
-                                Edit
-                              </Link>
-
-                              <button
-                                className=" whitespace-nowrap hover:text-primary-green transition-all w-full"
-                                onClick={() => handleDeleteJob(jobId)}
-                              >
-                                Remove from the board
-                              </button>
-                              <button
-                                className=" text-left whitespace-nowrap  hover:text-primary-green transition-all w-full"
-                                onClick={() => handleDeleteJob(jobId)}
-                              >
-                                Delete
-                              </button>
-                            </div>
-                          )}
+                          <AnimatePresence>
+                            {showActionDropdown && (
+                              <ActionDropdown
+                                confirmDelete={toggleConfirmActionModal}
+                                link={`/dashboard/job/edit/biddable/${jobId}}`}
+                              />
+                            )}
+                          </AnimatePresence>
                           {/* end of action dropdown */}
                         </div>
                       )}
@@ -191,16 +208,16 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
                   ) : null}
                 </div>
                 {currentUser?.unique_id === jobInfo?.userDetails?.userId && (
-                  <div className="flex items-center gap-3">
+                  <div className="flex-c gap-3">
                     <button
-                      className="text-primary-green text-[16px] leading-[24px] font-[500] max-sm:text-[14px] py-2  underline"
+                      className="text-primary-green font-medium max-sm:text-sm py-2  underline"
                       onClick={() => setIsPromoModalOpen(true)}
                     >
                       Promote
                     </button>
                     <Link
                       href="/dashboard/report/insights"
-                      className="text-primary-green text-[16px] leading-[24px] font-[500] max-sm:text-[14px] py-2  underline"
+                      className="text-primary-green font-medium max-sm:text-sm py-2  underline"
                     >
                       Insight
                     </Link>
@@ -211,30 +228,32 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
                   </div>
                 )}
               </div>
-              <div className="w-full border-b-[1px] border-[#B8B9B8] px-10 max-sm:px-5 py-6 flex flex-col gap-3">
-                <h5 className="text-primary-green text-[20px] leading-[28px] font-[500] max-sm:text-[16px]">
+              <div className="w-full border-b-1 border-[#B8B9B8] px-10 max-sm:px-5 py-6 flex flex-col gap-3">
+                <h5 className="text-primary-green sm:text-lg font-medium ">
                   {jobInfo?.category && Capitalize(jobInfo.category)}
                 </h5>
-                <div className="flex max-lg:flex-col items-center justify-between flex-wrap gap-5">
-                  <div className="flex items-center  gap-10  max-sm:gap-5 max-lg:w-full">
-                    <p className="text-[#5E625F] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
+                <div className="flex-c-b max-lg:flex-col flex-wrap gap-5">
+                  <div className="flex-c gap-10  max-sm:gap-5 max-lg:w-full">
+                    <p className="text-[#5E625F] max-sm:text-xs">
                       Posted{" "}
                       {jobInfo?.date ? formatCreatedAt(jobInfo.date) : "2 days"}
                     </p>
                     <div className="flex items-center gap-1">
                       <Image
                         src="/assets/icons/location.svg"
-                        alt="menu"
+                        alt="location"
                         width={20}
                         height={20}
-                        className="object-contain w-[20px] h-[20px] max-sm:w-[14px] max-sm:h-[14px] "
+                        className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5"
                       />
-                      <p className="text-[#1A201B] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
+                      <p className="text-[#1A201B] max-sm:text-xs">
                         {jobInfo?.location && Capitalize(jobInfo?.location)}
                       </p>
                     </div>
-                    <p className="text-[#030A05] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
-                      <span className="text-[#1A201B] font-[600]">Job ID:</span>{" "}
+                    <p className="max-sm:text-xs">
+                      <span className="text-[#1A201B] font-semibold">
+                        Job ID:
+                      </span>{" "}
                       {jobId && jobId}
                     </p>
                   </div>
@@ -245,7 +264,7 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
                         <>
                           {isApplied() ? (
                             <button
-                              className="bg-[#FF5D7A] px-[20px] py-[12px] text-[#FCFEFD] rounded-[10px] cursor-pointer font-bold font-exo whitespace-nowrap flex justify-center items-center  max-sm:py-[8px] max-sm:text-[14px]"
+                              className="bg-[#FF5D7A] px-[20px] py-[12px] text-[#FCFEFD] rounded-lg cursor-pointer font-bold whitespace-nowrap flex-c justify-center max-sm:py-[8px] max-sm:text-sm"
                               onClick={() =>
                                 handleWithdrawApplicationFofJob(
                                   jobId,
@@ -257,7 +276,7 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
                             </button>
                           ) : (
                             <button
-                              className="bg-primary-green px-[20px] py-[12px] text-[#fcfefd] rounded-[10px] cursor-pointer font-bold font-exo whitespace-nowrap flex justify-center items-center  max-sm:py-[8px] max-sm:text-[14px]"
+                              className="bg-primary-green px-[20px] py-[12px] text-[#fcfefd] rounded-lg cursor-pointer font-bold whitespace-nowrap flex-c justify-center max-sm:py-[8px] max-sm:text-sm"
                               onClick={() => setOpenBidModal(true)}
                             >
                               Apply
@@ -268,21 +287,21 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
 
                       {isSaved() ? (
                         <button
-                          className=" px-[20px] py-[12px] border-[1px] border-red-500 rounded-[10px] cursor-pointer font-bold font-exo whitespace-nowrap flex justify-center items-center  max-sm:py-[8px] max-sm:text-[14px] text-red-500"
+                          className=" px-[20px] py-[12px] border-1 border-red-500 rounded-lg cursor-pointer font-bold font-exo whitespace-nowrap flex-c justify-center max-sm:py-[8px] max-sm:text-sm text-red-500"
                           onClick={() => handleUnsaveJob(jobId)}
                         >
                           Unsave
                         </button>
                       ) : (
                         <button
-                          className=" px-[20px] py-[12px] border-[1px] border-[#030A05] rounded-[10px] cursor-pointer font-bold font-exo whitespace-nowrap flex justify-center items-center  max-sm:py-[8px] max-sm:text-[14px]"
+                          className=" px-[20px] py-[12px] border-1 rounded-lg cursor-pointer font-bold font-exo whitespace-nowrap flex-c justify-center max-sm:py-[8px] max-sm:text-sm"
                           onClick={() => handleSaveJob(jobId)}
                         >
                           Save
                         </button>
                       )}
                       <button
-                        className="bg-primary-green px-[20px] py-[12px] text-[#fcfefd] rounded-[10px] cursor-pointer font-bold font-exo whitespace-nowrap flex justify-center items-center  max-sm:py-[8px] max-sm:text-[14px]"
+                        className="bg-primary-green px-[20px] py-[12px] text-[#fcfefd] rounded-lg cursor-pointer font-bold font-exo whitespace-nowrap flex justify-center items-center  max-sm:py-[8px] max-sm:text-sm"
                         onClick={handleOpen}
                       >
                         <Image
@@ -290,7 +309,7 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
                           alt="menu"
                           width={20}
                           height={20}
-                          className="object-contain w-[20px] h-[20px] max-sm:w-[14px] max-sm:h-[14px] mr-1"
+                          className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5 mr-1"
                         />
                         Chats
                       </button>
@@ -319,8 +338,8 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
                   )}
                 </div>
               </div>
-              <div className="w-full border-b-[1px] border-[#B8B9B8] px-10 max-sm:px-5 py-6 ">
-                <p className="text-[#303632] text-[16px] leading-[24px] font-[400] max-sm:text-[12px] max-sm:leading-[18px]">
+              <div className="w-full border-b-1 border-[#B8B9B8] px-10 max-sm:px-5 py-6 ">
+                <p className="text-[#303632] max-sm:text-xs">
                   {jobInfo?.description && jobInfo?.description}
                 </p>
               </div>
@@ -328,89 +347,85 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
                 <div className="grid grid-cols-6 gap-10">
                   <div className="col-span-2 max-sm:col-span-3 flex gap-2">
                     <Image
-                      src="/assets/icons/layer.png"
+                      src="/assets/icons/layer.svg"
                       alt="menu"
                       width={20}
                       height={20}
-                      className="object-contain w-[20px] h-[20px] max-sm:w-[14px] max-sm:h-[14px] "
+                      className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5"
                     />
                     <div className="flex flex-col  gap-1">
-                      <h6 className="text-[#030A05] text-[18px] leading-[24px] font-[600] max-sm:text-[14px]">
+                      <h6 className="text-lg  font-semibold max-sm:text-sm">
                         {jobInfo?.milestoneNumber && jobInfo.milestoneNumber}
                       </h6>
-                      <p className="text-[#474C48] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
-                        Milestone
-                      </p>
+                      <p className="text-[#474C48] max-sm:text-xs">Milestone</p>
                     </div>
                   </div>
                   <div className="col-span-2 max-sm:col-span-3 flex gap-2">
                     <Image
-                      src="/assets/icons/clock.jpg"
+                      src="/assets/icons/clock.svg"
                       alt="menu"
                       width={20}
                       height={20}
-                      className="object-contain w-[20px] h-[20px] max-sm:w-[14px] max-sm:h-[14px] "
+                      className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5 "
                     />
                     <div className="flex flex-col  gap-1">
-                      <h6 className="text-[#030A05] text-[18px] leading-[24px] font-[600] max-sm:text-[14px]">
+                      <h6 className="text-lg  font-semibold max-sm:text-sm">
                         {jobInfo?.projectDuration && jobInfo.projectDuration}
                       </h6>
-                      <p className="text-[#474C48] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
+                      <p className="text-[#474C48] max-sm:text-xs">
                         Project duration
                       </p>
                     </div>
                   </div>
                   <div className="col-span-2 max-sm:col-span-3 flex gap-2">
                     <Image
-                      src="/assets/icons/guru.png"
+                      src="/assets/icons/guru 1.svg"
                       alt="menu"
                       width={20}
                       height={20}
-                      className="object-contain w-[20px] h-[20px] max-sm:w-[14px] max-sm:h-[14px] "
+                      className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5 "
                     />
                     <div className="flex flex-col  gap-1">
-                      <h6 className="text-[#030A05] text-[18px] leading-[24px] font-[600] max-sm:text-[14px]">
+                      <h6 className="text-lg  font-semibold max-sm:text-sm">
                         {jobInfo?.expertLevel && jobInfo.expertLevel}
                       </h6>
-                      <p className="text-[#474C48] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
+                      <p className="text-[#474C48] max-sm:text-xs">
                         Expert level
                       </p>
                     </div>
                   </div>
                   <div className="col-span-2 max-sm:col-span-3 flex gap-2">
                     <Image
-                      src="/assets/icons/empty-wallet.jpg"
+                      src="/assets/icons/empty-wallet.svg"
                       alt="menu"
                       width={20}
                       height={20}
-                      className="object-contain w-[20px] h-[20px] max-sm:w-[14px] max-sm:h-[14px] "
+                      className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5 "
                     />
                     <div className="flex flex-col gap-1">
-                      <h6 className="text-[#030A05] text-[18px] leading-[24px] font-[600] max-sm:text-[14px]">
+                      <h6 className="text-lg  font-semibold max-sm:text-sm">
                         ₦{" "}
                         {jobInfo?.bidRange &&
                           numberWithCommas(jobInfo.bidRange)}
                       </h6>
-                      <p className="text-[#474C48] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
-                        Bid range
-                      </p>
+                      <p className="text-[#474C48] max-sm:text-xs">Bid range</p>
                     </div>
                   </div>
                   <div className="col-span-2 max-sm:col-span-3 flex gap-2">
                     <Image
-                      src="/assets/icons/dollar-circle.jpg"
+                      src="/assets/icons/dollar-circle.svg"
                       alt="menu"
                       width={20}
                       height={20}
-                      className="object-contain w-[20px] h-[20px] max-sm:w-[14px] max-sm:h-[14px] "
+                      className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5 "
                     />
                     <div className="flex flex-col  gap-1">
-                      <h6 className="text-[#030A05] text-[18px] leading-[24px] font-[600] max-sm:text-[14px]">
+                      <h6 className="text-lg  font-semibold max-sm:text-sm">
                         ₦{" "}
                         {jobInfo?.maxPrice &&
                           numberWithCommas(jobInfo.maxPrice)}{" "}
                       </h6>
-                      <p className="text-[#474C48] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
+                      <p className="text-[#474C48] max-sm:text-xs">
                         Maximum price
                       </p>
                     </div>
@@ -428,64 +443,64 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
                 acceptQuote={acceptQuote}
               />
             </div>
-            <div className="col-span-9 max-lg:col-span-12 flelx flex-col w-full bg-white rounded-[10px] py-10 ">
-              <h4 className="px-10 max-sm:px-5 mb-2 text-[#000000] text-[20px] leading-[28px] font-[600] max-sm:text-[16px]">
+            <div className="col-span-9 max-lg:col-span-12 flelx flex-col w-full bg-white rounded-lg py-10 ">
+              <h4 className="px-10 max-sm:px-5 mb-2 text-lg font-semibold max-sm:text-[16px]">
                 Milestone
               </h4>
               {jobInfo?.milestoneDetails &&
                 jobInfo.milestoneDetails.map(
                   (milestone: any, index: number) => (
                     <div
-                      className=" px-10 max-sm:px-5 w-full border-t-[1px] border-[#B8B9B8] "
+                      className=" px-10 max-sm:px-5 w-full border-t-1 border-[#B8B9B8] "
                       key={index}
                     >
-                      <h6 className=" my-5 text-[#030A05] text-[16px] leading-[24px] font-[600] max-sm:text-[13px]">
+                      <h6 className=" my-5 font-semibold max-sm:text-xs">
                         Milestone {index + 1}
                       </h6>
                       <div className="flex  gap-10 max-sm:gap-5">
                         <div className=" flex gap-2">
                           <Image
-                            src="/assets/icons/clock.jpg"
+                            src="/assets/icons/clock.svg"
                             alt="menu"
                             width={20}
                             height={20}
-                            className="object-contain w-[20px] h-[20px] max-sm:w-[14px] max-sm:h-[14px] "
+                            className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5 "
                           />
                           <div className="flex flex-col  gap-1">
-                            <h6 className="text-[#030A05] text-[18px] leading-[24px] font-[600] max-sm:text-[14px]">
+                            <h6 className="text-lg font-semibold max-sm:text-sm">
                               {milestone?.milestoneDuration &&
                                 milestone?.milestoneDuration}
                             </h6>
-                            <p className="text-[#474C48] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
+                            <p className="text-[#474C48] max-sm:text-xs">
                               Milestone duration
                             </p>
                           </div>
                         </div>
                         <div className=" flex gap-2">
                           <Image
-                            src="/assets/icons/empty-wallet.jpg"
+                            src="/assets/icons/empty-wallet.svg"
                             alt="menu"
                             width={20}
                             height={20}
-                            className="object-contain w-[20px] h-[20px] max-sm:w-[14px] max-sm:h-[14px] "
+                            className="object-contain w-6 h-6 max-sm:w-5 max-sm:h-5 "
                           />
                           <div className="flex flex-col gap-1">
-                            <h6 className="text-[#030A05] text-[18px] leading-[24px] font-[600] max-sm:text-[14px]">
+                            <h6 className="text-lg font-semibold max-sm:text-sm">
                               ₦
                               {milestone?.milestoneAmount &&
                                 numberWithCommas(milestone?.milestoneAmount)}
                             </h6>
-                            <p className="text-[#474C48] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
+                            <p className="text-[#474C48] max-sm:text-xs">
                               Amount
                             </p>
                           </div>
                         </div>
                       </div>
                       <div className="py-5">
-                        <h6 className=" my-5 text-[#030A05] text-[16px] leading-[24px] font-[600] max-sm:text-[13px]">
+                        <h6 className="my-5 font-semibold max-sm:text-xs">
                           Milestone details
                         </h6>
-                        <p className=" my-5 text-[#303632] text-[16px] leading-[24px] font-[400] max-sm:text-[12px]">
+                        <p className=" my-5 text-[#303632] max-sm:text-xs">
                           {milestone?.milestoneDescription &&
                             milestone?.milestoneDescription}
                         </p>

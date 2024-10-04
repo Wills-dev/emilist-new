@@ -40,3 +40,63 @@ export const certificatesDetails = [
     expiringDate: "none",
   },
 ];
+
+export const messages = [
+  {
+    day: "Monday",
+    msg: [
+      {
+        who: "sender",
+        content: [
+          "Hi! My name is Simsisola Adeking. I’m new on this app and you have been assigned as my success coach. I’m looking forward to working with you. Nice to meet you.",
+        ],
+        time: "12:00am",
+        seen: "Sent at",
+      },
+      {
+        who: "reciever",
+        content: [
+          "Don’t you love the Tech1m web app. King Ayo 👑 and friends designed it ☺️",
+        ],
+        time: "12:00am",
+        seen: "Read at",
+      },
+      {
+        who: "sender",
+        content: [
+          "Thanks for agreeing to take this project with me i really appreciate it.",
+        ],
+        time: "12:00am",
+        seen: "Sent at",
+      },
+    ],
+  },
+  {
+    day: "Tuesday",
+    msg: [
+      {
+        who: "sender",
+        content: [
+          " as my success coach. I’m looking forward to working with you. Nice to meet you.",
+        ],
+        time: "12:00am",
+        seen: "Sent at",
+      },
+      {
+        who: "reciever",
+        content: [
+          "Lol, Its a nigerian name 💪🏼💪🏼",
+          "success coach. I’m looking forward to working with you. Nice to meet you.",
+        ],
+        time: "12:00am",
+        seen: "Read at",
+      },
+      {
+        who: "sender",
+        content: ["Oh wow! , Thats a funny name for a dog. Don’t you think."],
+        time: "12:00am",
+        seen: "Sent at",
+      },
+    ],
+  },
+];

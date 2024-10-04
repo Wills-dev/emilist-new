@@ -264,13 +264,6 @@ const MyListedJobs = () => {
                 </div>
               </form>
               <div className="flex flex-col gap-4 my-4 ">
-                <label
-                  htmlFor="filter"
-                  className="flex-c text-sm text-[#474c48] max-md:text-xs"
-                >
-                  Filter
-                </label>
-
                 <h6 className="text-lg font-semibold pt-4  max-sm:text-sm ">
                   Job title
                 </h6>

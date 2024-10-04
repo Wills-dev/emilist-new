@@ -9,7 +9,7 @@ type Props = {
 
 const PromoteModal = ({ isOpen, onCancel }: Props) => {
   return (
-    <Modal open={isOpen} onCancel={onCancel}>
+    <Modal open={isOpen} onCancel={onCancel} footer={null}>
       <h2 className="text-xl pb-1 font-semibold w-full border-b-1 border-[#B8B9B8] max-sm:text-lg">
         Promote your post
       </h2>
@@ -79,7 +79,7 @@ const PromoteModal = ({ isOpen, onCancel }: Props) => {
           </div>
         </div>
         <p className="sm:text-lg text-primary-green py-2 mt-3 font-semibold w-full">
-          #11,500
+          ₦11,500
         </p>
       </div>
       <div className="py-6  ">
@@ -102,7 +102,7 @@ const PromoteModal = ({ isOpen, onCancel }: Props) => {
               Approx 2000 clicks
             </p>
             <p className="text-[#5e625f]  font-bold max-sm:text-sm">
-              NB: 1 Click cost #1
+              NB: 1 Click cost ₦1
             </p>
           </div>
         </div>
