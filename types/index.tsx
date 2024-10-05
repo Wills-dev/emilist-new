@@ -96,3 +96,14 @@ export type QuoteModalProps = {
   jobInfo: any;
   getJobInfo: any;
 };
+
+export interface PaymentDetails {
+  amountpaid: number | string;
+  paymentmethod: string;
+  date: string;
+}
+
+export interface ContractType {
+  recommendVendor: "Yes" | "No" | "Maybe";
+  review: string;
+}
