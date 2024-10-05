@@ -3122,6 +3122,32 @@ export const JobLinks = [
   },
 ];
 
+export const ProjectLinks = [
+  { id: 1, name: "new", link: "/dahboard/project/new" },
+
+  {
+    id: 2,
+    name: "active projects",
+    link: "/dashboard/project/active",
+  },
+
+  {
+    id: 3,
+    name: "overdue projects",
+    link: "/dashboard/project/overdue",
+  },
+  {
+    id: 4,
+    name: "paused projects",
+    link: "/dashboard/project/paused",
+  },
+  {
+    id: 5,
+    name: "completed projects",
+    link: "/dashboard/project/completed",
+  },
+];
+
 export const reportLinks = [
   {
     id: 1,
