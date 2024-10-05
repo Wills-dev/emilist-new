@@ -188,3 +188,21 @@ export const formatOverDueDate = (date: any): string => {
     return `${weeksDiff} ${weeksDiff === 1 ? "week" : "weeks"}`;
   } else return `${monthsDiff} ${monthsDiff === 1 ? "month" : "months"}`;
 };
+
+export const combineAndSortArrays = (arr1: any, arr2: any) => {
+  if (arr1.length === 0)
+    return arr2.sort(
+      (a: any, b: any) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+  if (arr2.length === 0)
+    return arr1.sort(
+      (a: any, b: any) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+
+  const combinedArray = [...arr1, ...arr2];
+  return combinedArray.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+};

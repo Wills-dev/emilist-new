@@ -1,7 +1,12 @@
-import React from "react";
+import ActiveProjects from "@/components/ProjectComponents/ActiveProjects";
+import ProjectDashboardLayout from "@/components/ProjectComponents/ProjectDashboardLayout";
 
-const ActiveProjects = () => {
-  return <div>ActiveProjects</div>;
+const ActiveProjectPage = () => {
+  return (
+    <ProjectDashboardLayout>
+      <ActiveProjects />
+    </ProjectDashboardLayout>
+  );
 };
 
-export default ActiveProjects;
+export default ActiveProjectPage;
