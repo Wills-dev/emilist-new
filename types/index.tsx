@@ -107,3 +107,30 @@ export interface ContractType {
   recommendVendor: "Yes" | "No" | "Maybe";
   review: string;
 }
+
+export interface Job {
+  jobTitle: string;
+  category: string;
+  service: string;
+  location: string;
+  description: string;
+  maxPrice: number;
+  bidRange: number;
+  expertLevel: string;
+  projectDuration: string;
+  milestoneNumber: number;
+  milestoneDetails: any[];
+}
+
+export interface JobRegular {
+  jobTitle: string;
+  Category: string;
+  service: string;
+  Location: string;
+  Description: string;
+  expertLevel: string;
+  projectDuration: string;
+  milestoneNumber: number;
+  milestoneDetails: any[];
+  Amount: number;
+}

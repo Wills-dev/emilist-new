@@ -196,7 +196,7 @@ const BiddableJobInfo = ({ jobId }: BiddableJobInfoProps) => {
                             {showActionDropdown && (
                               <ActionDropdown
                                 confirmDelete={toggleConfirmActionModal}
-                                link={`/dashboard/job/edit/biddable/${jobId}}`}
+                                link={`/dashboard/job/edit/biddable/${jobId}`}
                               />
                             )}
                           </AnimatePresence>
