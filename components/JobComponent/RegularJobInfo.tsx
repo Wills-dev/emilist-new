@@ -194,7 +194,7 @@ const RegularJobInfo = ({ jobId }: RegularJobInfoProps) => {
                           {showActionDropdown && (
                             <ActionDropdown
                               confirmDelete={toggleConfirmActionModal}
-                              link={`/dashboard/job/edit/regular/${jobId}}`}
+                              link={`/dashboard/job/edit/regular/${jobId}`}
                             />
                           )}
                         </AnimatePresence>

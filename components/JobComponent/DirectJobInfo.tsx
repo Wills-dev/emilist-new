@@ -110,7 +110,7 @@ const DirectJobInfo = ({ jobId }: DirectJobInfoProps) => {
                           {showActionDropdown && (
                             <ActionDropdown
                               confirmDelete={toggleConfirmActionModal}
-                              link={`/dashboard/job/edit/direct/${jobId}}`}
+                              link={`/dashboard/job/edit/direct/${jobId}`}
                             />
                           )}
                         </AnimatePresence>
