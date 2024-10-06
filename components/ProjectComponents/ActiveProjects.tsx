@@ -31,6 +31,7 @@ const ActiveProjects = () => {
       getAllProjectsByStatus(currentUser.unique_id, "active");
     }
   }, [currentUser]);
+
   return (
     <>
       {isLoading || userLoading ? (
