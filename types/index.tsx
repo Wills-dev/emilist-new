@@ -134,3 +134,10 @@ export interface JobRegular {
   milestoneDetails: any[];
   Amount: number;
 }
+
+export interface MembershipProps {
+  organization: string;
+  position: string;
+  startDate: string;
+  endDate: string;
+}
