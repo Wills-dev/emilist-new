@@ -3176,3 +3176,18 @@ export const reportLinks = [
     link: "/dashboard/service/target",
   },
 ];
+
+export const profileLinks = [
+  {
+    id: 1,
+    name: "Personal Profile",
+  },
+  {
+    id: 2,
+    name: "Log In & Security",
+  },
+  {
+    id: 3,
+    name: "Message & Notification",
+  },
+];
